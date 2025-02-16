@@ -1,0 +1,9 @@
+{
+    "cmicoe adapter settings": "Adapterinstellingen voor cmicoe",
+    "option1": "Option1",
+    "option2": "Optie2",
+    "cmiIP": "IP -adres van de C.M.I.",
+    "nodesOption": "Uitgangsknooppunten ([knoop]/[d | a] [output], ..) E.G.: 25/d1,29/a3",
+    "sendInterval": "Stuur interval",
+    "sendOnChange": "Stuur op verandering"
+}

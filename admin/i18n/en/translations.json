@@ -1,0 +1,7 @@
+{
+	"cmicoe adapter settings": "Adapter settings for cmicoe",
+    "cmiIP": "ip address of the C.M.I.",
+    "nodesOption": "output nodes ([node]/[d|a][output],..) e.g.: 25/d1,29/a3",
+    "sendInterval": "send interval",
+    "sendOnChange": "send on change"
+}

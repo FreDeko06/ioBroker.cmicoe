@@ -1,0 +1,9 @@
+{
+    "cmicoe adapter settings": "Налаштування адаптера для cmicoe",
+    "option1": "Варіант1",
+    "option2": "Варіант2",
+    "cmiIP": "IP -адреса C.M.I.",
+    "nodesOption": "Вихідні вузли ([вузол]/[d | a] [вихід], ..), наприклад: 25/d1,29/a3",
+    "sendInterval": "Надіслати інтервал",
+    "sendOnChange": "Надіслати зміни"
+}

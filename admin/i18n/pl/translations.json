@@ -1,0 +1,9 @@
+{
+    "cmicoe adapter settings": "Ustawienia adaptera dla cmicoe",
+    "option1": "opcja 1",
+    "option2": "opcja2",
+    "cmiIP": "Adres IP C.M.I.",
+    "nodesOption": "Węzły wyjściowe ([węzeł]/[d | a] [wyjście], ..) np.: 25/d1,29/a3",
+    "sendInterval": "Wyślij interwał",
+    "sendOnChange": "Wyślij zmianę"
+}

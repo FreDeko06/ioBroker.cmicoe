@@ -1,0 +1,127 @@
+{
+    "common": {
+        "name": "cmicoe",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "uk": "Початкова версія",
+                "zh-cn": "首次出版"
+            }
+        },
+        "titleLang": {
+            "en": "CoE with CMI",
+            "de": "COE mit CMI",
+            "ru": "Коу с CMI",
+            "pt": "Coe com CMI",
+            "nl": "Coe met CMI",
+            "fr": "COE avec CMI",
+            "it": "Coe con CMI",
+            "es": "Coe con CMI",
+            "pl": "COE z CMI",
+            "uk": "COE з CMI",
+            "zh-cn": "与CMI的COE"
+        },
+        "desc": {
+            "en": "Adapter to communicate with the CMI by Technische Alternative via CoE",
+            "de": "Adapter zur Kommunikation mit dem CMI mit der Technischen Alternative über COE",
+            "ru": "Адаптер для общения с CMI по альтернативе Technische через COE",
+            "pt": "Adaptador para se comunicar com o CMI pela Technische Alternative via Coe",
+            "nl": "Adapter om te communiceren met de CMI per technische alternatief via COE",
+            "fr": "Adaptateur pour communiquer avec l'alternative CMI par Technische via COE",
+            "it": "Adattatore per comunicare con il CMI mediante alternativa Technische tramite COE",
+            "es": "Adaptador para comunicarse con el CMI por Technische Alternative a través de COE",
+            "pl": "Adapter do komunikacji z CMI przez Technische Alternative Via COE",
+            "uk": "Адаптер для спілкування з CMI за допомогою Technische Alternative через COE",
+            "zh-cn": "适配器通过COE与Technische替代方案与CMI通信"
+        },
+        "authors": [
+            "FreDeko <freddegenkolb@gmail.com>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "template",
+            "Smart Home",
+            "home automation"
+        ],
+        "licenseInformation": {
+            "type": "free",
+            "license": "MIT"
+        },
+        "platform": "Javascript/Node.js",
+        "icon": "cmicoe.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/FreDeko06/ioBroker.cmicoe/main/admin/cmicoe.png",
+        "readme": "https://github.com/FreDeko06/ioBroker.cmicoe/blob/main/README.md",
+        "loglevel": "info",
+        "tier": 3,
+        "mode": "daemon",
+        "type": "iot-systems",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "push",
+        "adminUI": {
+            "config": "materialize"
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=6.0.11"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=7.0.23"
+            }
+        ]
+    },
+    "native": {
+        "nodes": "",
+        "cmiIP": "",
+        "sendInterval": 60,
+        "sendOnChange": true
+    },
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "timeout",
+            "type": "state",
+            "common": {
+                "name": "No packets from CMI",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
+}

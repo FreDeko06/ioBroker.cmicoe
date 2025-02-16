@@ -1,0 +1,9 @@
+{
+    "cmicoe adapter settings": "cmicoe的适配器设置",
+    "option1": "选项1",
+    "option2": "选项2",
+    "cmiIP": "C.M.I.的IP地址",
+    "nodesOption": "输出节点（[node]/[d | a] [output]，..）例如：25/d1,29/a3",
+    "sendInterval": "发送间隔",
+    "sendOnChange": "发送更改"
+}
