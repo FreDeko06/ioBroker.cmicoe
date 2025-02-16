@@ -36,6 +36,7 @@ class Cmicoe extends utils.Adapter {
     this.outputs = [];
   }
   sock;
+  socketConnected = false;
   outputs;
   lastSent = 0;
   sendInterval = void 0;
@@ -51,10 +52,12 @@ class Cmicoe extends utils.Adapter {
       const outputs = this.config.nodes.split(",");
       for (let idx = 0; idx < outputs.length; idx++) {
         const output = outputs[idx];
+        if (output == "")
+          continue;
         const regex = /^(\d+)\/(\w)(\d+)$/;
         const matches = output.match(regex);
         if (matches == null) {
-          this.log.warn(`match ${output} has wrong format (no match)!`);
+          this.log.warn(`output configuration "${output}" has wrong format (no match)!`);
           continue;
         }
         this.log.debug(`${matches[0]}: ${matches[1]}, ${matches[2]}, ${matches[3]}`);
@@ -111,9 +114,15 @@ class Cmicoe extends utils.Adapter {
       const addr = this.sock.address();
       this.log.debug(`socket listening on ${addr.address}:${addr.port}`);
       this.setState("info.connection", true, true);
+      this.socketConnected = true;
     });
     this.sock.on("error", (err) => {
       this.log.error(`socket error: ${err}`);
+      if (err.message.includes("EADDRINUSE")) {
+        this.log.error(
+          "this could be caused by another instance of this adapter running. Make sure to only start one instance of this adapter."
+        );
+      }
     });
     this.sock.bind(5442, "0.0.0.0");
     this.sendInterval = setInterval(() => this.sendOutputs(), this.config.sendInterval * 1e3);
@@ -140,7 +149,9 @@ class Cmicoe extends utils.Adapter {
       this.setStateChanged("info.connection", false, true);
     } else {
       this.setStateChanged("timeout", false, true);
-      this.setStateChanged("info.connection", true, true);
+      if (this.socketConnected) {
+        this.setStateChanged("info.connection", true, true);
+      }
     }
     for (let idx = 0; idx < this.outputs.length; idx++) {
       const output = this.outputs[idx];
@@ -273,7 +284,7 @@ class Cmicoe extends utils.Adapter {
       return false;
     }
     if (outID <= 0) {
-      this.log.warn(`Out ID has to be greater than 0 (got ${outID})!`);
+      this.log.warn(`Output ID has to be greater than 0 (got ${outID})!`);
       return false;
     }
     const array = new Uint8Array(8);
