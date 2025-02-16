@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "news": {
+      "0.1.1": {
+        "en": "improved log messages\nadded log message if address/ip are already in use (probably two instances started)",
+        "de": "verbesserte log-nachrichten\nlog-nachricht hinzugefügt, wenn adreß/ip bereits im einsatz sind (wahrscheinlich zwei instanzen gestartet)",
+        "ru": "улучшенные сообщения\nдобавленное сообщение журнала, если адрес/ip уже используется (возможно, два экземпляра запущены)",
+        "pt": "mensagens de log melhoradas\nadicionado mensagem de log se o endereço/ip já estiver em uso (provavelmente duas instâncias iniciadas)",
+        "nl": "verbeterde logberichten\nlogbericht toegevoegd als adres/ip al in gebruik is (waarschijnlijk twee gevallen gestart)",
+        "fr": "amélioration des messages de journal\nmessage de journal ajouté si l'adresse/ip sont déjà en utilisation (probablement deux instances ont commencé)",
+        "it": "messaggi di log migliorati\nmessaggio di registro aggiunto se indirizzo/ip sono già in uso (probabilmente due istanze avviate)",
+        "es": "mensajes de registro mejorados\nmensaje de registro añadido si la dirección/ip ya está en uso (probablemente dos casos comenzados)",
+        "pl": "ulepszone komunikaty dziennika\ndodana wiadomość dziennika, jeśli adres / ip są już w użyciu (prawdopodobnie uruchomione dwie instancje)",
+        "uk": "покращені повідомлення журналу\nдодано лог повідомлення, якщо адреса/іп вже знаходиться у використанні (щодо двох екземплярів розпочато)",
+        "zh-cn": "改进日志消息\n如果已经使用地址/ ip, 则添加日志消息( 可能已启动两个实例)"
+      },
       "0.1.0": {
         "en": "initial release",
         "de": "erstausstrahlung",
