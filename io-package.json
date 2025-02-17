@@ -142,10 +142,27 @@
       "type": "state",
       "common": {
         "name": "No packets from CMI",
+        "role": "indicator.maintenance.unreach",
         "type": "boolean",
         "read": true,
         "write": false,
         "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "out",
+      "type": "device",
+      "common": {
+        "name": "Output to CMI"
+      },
+      "native": {}
+    },
+    {
+      "_id": "in",
+      "type": "device",
+      "common": {
+        "name": "Input from CMI"
       },
       "native": {}
     }

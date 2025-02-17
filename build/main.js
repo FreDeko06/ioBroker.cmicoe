@@ -60,7 +60,6 @@ class Cmicoe extends utils.Adapter {
           this.log.warn(`output configuration "${output}" has wrong format (no match)!`);
           continue;
         }
-        this.log.debug(`${matches[0]}: ${matches[1]}, ${matches[2]}, ${matches[3]}`);
         let digital = false;
         if (matches[2].toLowerCase() == "d")
           digital = true;
@@ -75,35 +74,14 @@ class Cmicoe extends utils.Adapter {
           output: parseInt(matches[3]),
           analog: !digital
         };
-        this.outputs.push(out);
+        if (!this.outputs.some((o) => o.analog == out.analog && o.node == out.node && o.output == out.output))
+          this.outputs.push(out);
       }
     } catch (e) {
       this.log.error("Nodes setting has the wrong format!");
     }
     await this.delUnusedNodes();
-    for (let idx = 0; idx < this.outputs.length; idx++) {
-      const output = this.outputs[idx];
-      const id = `out.node${output.node}.${output.analog ? "analog" : "digital"}${output.output}`;
-      const obj = {
-        type: "state",
-        common: {
-          type: output.analog ? "number" : "boolean",
-          read: true,
-          write: true,
-          role: "",
-          name: `Node ${output.node}/${output.output}`,
-          def: output.analog ? 0 : false
-        },
-        native: {},
-        _id: id
-      };
-      this.log.debug(`creating state with id ${id}...`);
-      await this.setObjectNotExistsAsync(id, obj);
-    }
-    if (this.config.sendOnChange) {
-      this.log.debug(`subscribing to states`);
-      this.subscribeStates("out.node*");
-    }
+    await this.createStates();
     this.sock.on("message", (msg, rinfo) => {
       this.coeReceived(msg, rinfo);
     });
@@ -125,7 +103,7 @@ class Cmicoe extends utils.Adapter {
       }
     });
     this.sock.bind(5442, "0.0.0.0");
-    this.sendInterval = setInterval(() => this.sendOutputs(), this.config.sendInterval * 1e3);
+    this.sendInterval = this.setInterval(() => this.sendOutputs(), this.config.sendInterval * 1e3);
     await this.sendOutputs();
   }
   async delUnusedNodes() {
@@ -143,14 +121,56 @@ class Cmicoe extends utils.Adapter {
       }
     }
   }
+  async createStates() {
+    for (let idx = 0; idx < this.outputs.length; idx++) {
+      const output = this.outputs[idx];
+      const id = `out.node${output.node}.${output.analog ? "analog" : "digital"}${output.output}`;
+      const nodeChannel = `out.node${output.node}`;
+      const nodeObj = {
+        type: "channel",
+        common: {
+          name: `Node ${output.node}`
+        },
+        native: {},
+        _id: nodeChannel
+      };
+      await this.setObjectNotExistsAsync(nodeChannel, nodeObj);
+      const obj = {
+        type: "state",
+        common: {
+          type: output.analog ? "number" : "boolean",
+          read: true,
+          write: true,
+          role: "value",
+          name: `Output ${output.node}/${output.output}`,
+          def: output.analog ? 0 : false
+        },
+        native: {},
+        _id: id
+      };
+      this.log.debug(`creating state with id ${id}...`);
+      await this.setObjectNotExistsAsync(id, obj);
+    }
+    if (this.config.sendOnChange) {
+      this.log.debug(`subscribing to states`);
+      this.subscribeStates("out.node*");
+    }
+  }
+  timeout = false;
   async sendOutputs() {
-    if (this.lastSent > (/* @__PURE__ */ new Date()).getTime() + 18e5) {
-      this.setStateChanged("timeout", true, true);
-      this.setStateChanged("info.connection", false, true);
+    if (this.lastSent > Date.now() + 18e5) {
+      if (!this.timeout) {
+        this.setStateChanged("timeout", true, true);
+        this.setStateChanged("info.connection", false, true);
+        this.timeout = true;
+      }
     } else {
-      this.setStateChanged("timeout", false, true);
-      if (this.socketConnected) {
-        this.setStateChanged("info.connection", true, true);
+      if (this.timeout) {
+        this.setStateChanged("timeout", false, true);
+        if (this.socketConnected) {
+          this.setStateChanged("info.connection", true, true);
+        }
+        this.timeout = false;
       }
     }
     for (let idx = 0; idx < this.outputs.length; idx++) {
@@ -158,15 +178,7 @@ class Cmicoe extends utils.Adapter {
       await this.sendOutput(output);
     }
   }
-  async sendOutput(output) {
-    const id = `out.node${output.node}.${output.analog ? "analog" : "digital"}${output.output}`;
-    const state = await this.getStateAsync(id);
-    if (!state) {
-      this.log.warn(`state for output ${id} does not exist. Please restart adapter`);
-      return;
-    }
-    if (state.ack)
-      return;
+  async sendState(output, id, state) {
     if (state.val == null) {
       this.log.warn(`cannot send null value (${id})`);
       return;
@@ -181,15 +193,24 @@ class Cmicoe extends utils.Adapter {
       this.setState(id, state.val, success);
     }
   }
+  async sendOutput(output) {
+    const id = `out.node${output.node}.${output.analog ? "analog" : "digital"}${output.output}`;
+    const state = await this.getStateAsync(id);
+    if (!state) {
+      this.log.warn(`state for output ${id} does not exist. Please restart adapter`);
+      return;
+    }
+    await this.sendState(output, id, state);
+  }
   coeReceived(msg, rinfo) {
-    this.lastSent = (/* @__PURE__ */ new Date()).getTime();
+    this.lastSent = Date.now();
     this.log.debug(`received ${msg.toString("hex")} from ${rinfo.address}`);
     this.handlePacket(msg);
   }
   onUnload(callback) {
     try {
       if (this.sendInterval)
-        clearInterval(this.sendInterval);
+        this.clearInterval(this.sendInterval);
       this.sock.close();
       this.unsubscribeStates("*");
       callback();
@@ -212,14 +233,13 @@ class Cmicoe extends utils.Adapter {
     return output;
   }
   onStateChange(id, state) {
-    console.warn("state changed: " + id);
     if (state) {
       if (state.ack)
         return;
       const output = this.outputFromId(id);
       if (output == null)
         return;
-      this.sendOutput(output);
+      this.sendState(output, id, state);
     }
   }
   dataTypes = {
@@ -245,9 +265,15 @@ class Cmicoe extends utils.Adapter {
     43: "(bool)",
     69: "W"
   };
-  handlePacket(packet) {
+  inputs = [];
+  async handlePacket(packet) {
+    if (packet.length != 12) {
+      this.log.warn(`received invalid packet! Couldn't handle`);
+      return;
+    }
     const nodeID = packet.readInt8(4);
     const outID = packet.readInt8(5) + 1;
+    const digital = packet.readInt8(6) == 0;
     const dataType = packet.readInt8(7);
     const data = packet.readUint32LE(8);
     let typ = "(unknown)";
@@ -255,9 +281,17 @@ class Cmicoe extends utils.Adapter {
       typ = this.dataTypes[dataType];
     }
     this.log.debug(`received data from node ${nodeID}/${outID}: ${data} ${typ}`);
-    let digital = false;
-    if (dataType == 43) {
-      digital = true;
+    if (!this.isNodeCreated(nodeID)) {
+      const nodeChannel = `in.node${nodeID}`;
+      const nodeObj = {
+        type: "channel",
+        common: {
+          name: `Node ${nodeID}`
+        },
+        native: {},
+        _id: nodeChannel
+      };
+      await this.setObjectNotExistsAsync(nodeChannel, nodeObj);
     }
     const id = "in.node" + nodeID + "." + (digital ? "digital" : "analog") + outID;
     const obj = {
@@ -267,14 +301,23 @@ class Cmicoe extends utils.Adapter {
         read: true,
         write: false,
         role: "",
-        name: `Node ${nodeID}/${outID}`
+        name: `Input ${nodeID}/${outID}`
       },
       native: {},
       _id: id
     };
-    this.setObjectNotExists(id, obj, () => {
-      this.setState(id, digital ? data == 1 ? true : false : data, true);
-    });
+    if (!this.inputs.some((i) => i.analog != digital && i.node == nodeID && i.output == outID)) {
+      await this.setObjectNotExistsAsync(id, obj);
+      this.inputs.push({ node: nodeID, output: outID, analog: !digital });
+    }
+    this.setState(id, digital ? data == 1 ? true : false : data, true);
+  }
+  isNodeCreated(nodeID) {
+    for (let i = 0; i < this.inputs.length; i++) {
+      if (this.inputs[i].node == nodeID)
+        return true;
+    }
+    return false;
   }
   send(nodeID, outID, dataType, data) {
     if (this.cmiIP == "")

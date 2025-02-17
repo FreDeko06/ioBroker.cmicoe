@@ -37,6 +37,8 @@ Additionally the interval in which the values are sent can be specified and if t
 
 ### **WORK IN PROGRESS**
 * downgrade to node 18
+* create channel/devices before states
+* performance improvements
 
 ## License
 MIT License
