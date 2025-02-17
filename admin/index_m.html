@@ -20,7 +20,6 @@
 	<script type="text/javascript">
 		// This will be called by the admin adapter when the settings page loads
 		function load(settings, onChange) {
-			// example: select elements with id=key and class=value and insert value
 			console.log(settings);
 			if (!settings) return;
 			$("#nodes").prop("value", settings["nodes"]);
@@ -28,6 +27,9 @@
 			$('#cmiIP').prop("value", settings["cmiIP"]).on("keyup", () => onChange());
 			$('#sendInterval').prop("value", settings["sendInterval"]).on("keyup", () => onChange());
 			$('#sendOnChange').prop("checked", settings["sendOnChange"]).on("change", () => onChange());
+			$('#bind').prop("value", settings["bind"]).on("keyup", () => onChange());
+			$('#port').prop("value", settings["port"]).on("keyup", () => onChange());
+			$('#cmiPort').prop("value", settings["cmiPort"]).on("keyup", () => onChange());
 			onChange(false);
 			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
 			if (M) M.updateTextFields();
@@ -43,6 +45,11 @@
 			obj["sendInterval"] = parseFloat($("#sendInterval").val());
 			if(!obj["sendInterval"]) obj["sendInterval"] = 60;
 			obj["sendOnChange"] = $("#sendOnChange").prop("checked");
+			obj["bind"] = $("#bind").val();
+			obj["port"] = parseInt($("#port").val());
+			if(!obj["port"]) obj["port"] = 5441;
+			obj["cmiPort"] = parseInt($("#cmiPort").val());
+			if(!obj["cmiPort"]) obj["cmiPort"] = 5441;
 			callback(obj);
 		}
 	</script>
@@ -63,14 +70,28 @@
 
 		<!-- For example columns with settings: -->
 		<div class="row">
-			<div class="col s12 input-field">
+			<div class="col s8 input-field">
+				<input type="text" class="value" id="bind" />
+				<label for="bindOption" class="translate">bindOption</label>
+			</div>
+			<div class="col s4 input-field">
+				<input type="number" class="value" id="port" />
+				<label for="portOption" class="translate">portOption</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s8 input-field">
 				<input type="text" class="value" id="cmiIP" placeholder="e.g. 192.168.1.103" />
 				<label for="cmiIP" class="translate">cmiIP</label>
+			</div>
+			<div class="col s4 input-field">
+				<input type="number" class="value" id="cmiPort" />
+				<label for="cmiPort" class="translate">cmiPort</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col s12 input-field">
-				<input type="text" class="value" id="nodes" placeholder="25/d1,32/a5" />
+				<input type="text" class="value" id="nodes" placeholder="e.g. 25/d1,32/a5" />
 				<label for="Nodes/Outputs" class="translate">nodesOption</label>
 			</div>
 		</div>

@@ -78,6 +78,17 @@ class Cmicoe extends utils.Adapter {
 
 		await this.createStates();
 
+		if (this.config.bind == "") {
+			this.log.error("No bind ip specified. Cannot listen!");
+		} else {
+			this.initSocket();
+		}
+
+		this.sendInterval = this.setInterval(() => this.sendOutputs(), this.config.sendInterval * 1000);
+		await this.sendOutputs();
+	}
+
+	private initSocket(): void {
 		this.sock.on("message", (msg: Buffer, rinfo: socket.RemoteInfo) => {
 			this.coeReceived(msg, rinfo);
 		});
@@ -99,10 +110,7 @@ class Cmicoe extends utils.Adapter {
 			}
 		});
 
-		this.sock.bind(5442, "0.0.0.0");
-
-		this.sendInterval = this.setInterval(() => this.sendOutputs(), this.config.sendInterval * 1000);
-		await this.sendOutputs();
+		this.sock.bind(this.config.port, this.config.bind);
 	}
 
 	private async delUnusedNodes(): Promise<void> {
@@ -361,8 +369,8 @@ class Cmicoe extends utils.Adapter {
 		buffer.fill(array);
 		buffer.writeUint32LE(data, 8);
 
-		this.log.debug(`sending ${buffer.toString("hex")} to ${this.cmiIP}`);
-		this.sock.send(buffer, 5442, this.cmiIP, (err) => {
+		this.log.debug(`sending ${buffer.toString("hex")} to ${this.cmiIP}:${this.config.cmiPort}`);
+		this.sock.send(buffer, this.config.cmiPort, this.cmiIP, (err) => {
 			if (err != null) {
 				this.log.error(`error sending: ${err}`);
 			}

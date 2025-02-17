@@ -1,7 +1,12 @@
 {
-    "cmicoe adapter settings": "Adaptereinstellungen für cmicoe",
+    "bindOption": "IP zum Anhören von",
     "cmiIP": "IP-Adresse des C.M.I.",
+    "cmiPort": "CoE-Port des C.M.I.",
+    "cmicoe adapter settings": "Adaptereinstellungen für cmicoe",
     "nodesOption": "Ausgangsknoten ([Knoten]/[d|a][Ausgang],..) e.g.: 25/d1,29/a3",
+    "option1": "",
+    "option2": "",
+    "portOption": "Port zu hören, von",
     "sendInterval": "Sende-Intervall",
     "sendOnChange": "Bei Änderung senden"
 }

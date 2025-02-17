@@ -1,9 +1,12 @@
 {
+    "bindOption": "IP para ouvir",
+    "cmiIP": "Endereço IP do C.M.I.",
+    "cmiPort": "Porta Coe do C.M.I.",
     "cmicoe adapter settings": "Configurações do adaptador para cmicoe",
+    "nodesOption": "nós de saída ([nó]/[d | a] [saída], ..) por exemplo: 25/d1,29/a3",
     "option1": "opção1",
     "option2": "opção2",
-    "cmiIP": "Endereço IP do C.M.I.",
-    "nodesOption": "nós de saída ([nó]/[d | a] [saída], ..) por exemplo: 25/d1,29/a3",
+    "portOption": "porta para ouvir",
     "sendInterval": "Enviar intervalo",
     "sendOnChange": "Envie em alteração"
 }

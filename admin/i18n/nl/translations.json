@@ -1,9 +1,12 @@
 {
+    "bindOption": "IP om te luisteren van",
+    "cmiIP": "IP -adres van de C.M.I.",
+    "cmiPort": "COE -haven van de C.M.I.",
     "cmicoe adapter settings": "Adapterinstellingen voor cmicoe",
+    "nodesOption": "Uitgangsknooppunten ([knoop]/[d | a] [output], ..) E.G.: 25/d1,29/a3",
     "option1": "Option1",
     "option2": "Optie2",
-    "cmiIP": "IP -adres van de C.M.I.",
-    "nodesOption": "Uitgangsknooppunten ([knoop]/[d | a] [output], ..) E.G.: 25/d1,29/a3",
+    "portOption": "poort om te luisteren van",
     "sendInterval": "Stuur interval",
     "sendOnChange": "Stuur op verandering"
 }

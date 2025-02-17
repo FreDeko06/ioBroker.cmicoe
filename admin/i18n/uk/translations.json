@@ -1,9 +1,12 @@
 {
+    "bindOption": "Ip, щоб слухати з",
+    "cmiIP": "IP -адреса C.M.I.",
+    "cmiPort": "COE Порт C.M.I.",
     "cmicoe adapter settings": "Налаштування адаптера для cmicoe",
+    "nodesOption": "Вихідні вузли ([вузол]/[d | a] [вихід], ..), наприклад: 25/d1,29/a3",
     "option1": "Варіант1",
     "option2": "Варіант2",
-    "cmiIP": "IP -адреса C.M.I.",
-    "nodesOption": "Вихідні вузли ([вузол]/[d | a] [вихід], ..), наприклад: 25/d1,29/a3",
+    "portOption": "порт, щоб слухати з",
     "sendInterval": "Надіслати інтервал",
     "sendOnChange": "Надіслати зміни"
 }

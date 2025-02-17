@@ -1,9 +1,12 @@
 {
+    "bindOption": "IP do słuchania",
+    "cmiIP": "Adres IP C.M.I.",
+    "cmiPort": "Port Coe of C.M.I.",
     "cmicoe adapter settings": "Ustawienia adaptera dla cmicoe",
+    "nodesOption": "Węzły wyjściowe ([węzeł]/[d | a] [wyjście], ..) np.: 25/d1,29/a3",
     "option1": "opcja 1",
     "option2": "opcja2",
-    "cmiIP": "Adres IP C.M.I.",
-    "nodesOption": "Węzły wyjściowe ([węzeł]/[d | a] [wyjście], ..) np.: 25/d1,29/a3",
+    "portOption": "port do słuchania",
     "sendInterval": "Wyślij interwał",
     "sendOnChange": "Wyślij zmianę"
 }

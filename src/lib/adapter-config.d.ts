@@ -6,11 +6,15 @@ declare global {
 		interface AdapterConfig {
 			nodes: string;
 			cmiIP: string;
+			cmiPort: number;
 			sendInterval: number;
 			sendOnChange: boolean;
+			bind: string;
+			port: number;
 		}
 	}
 }
 
 // this is required so the above AdapterConfig is found by TypeScript / type checking
-export {};
+export { };
+

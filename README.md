@@ -40,6 +40,9 @@ Additionally the interval in which the values are sent can be specified and if t
 ### 0.1.0 (2025-02-16)
 * (FreDeko) initial release
 
+### **WORK IN PROGRESS**
+* created bind and port options
+
 ## License
 MIT License
 
