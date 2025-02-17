@@ -43,6 +43,10 @@ Additionally the interval in which the values are sent can be specified and if t
 ### 0.1.0 (2025-02-16)
 * (FreDeko) initial release
 
+### **WORK IN PROGRESS**
+* added support for multiple messages in one packet (receiving and sending)
+* added error handling
+
 ## License
 MIT License
 

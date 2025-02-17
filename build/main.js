@@ -87,7 +87,13 @@ class Cmicoe extends utils.Adapter {
     } else {
       this.initSocket();
     }
-    this.sendInterval = this.setInterval(() => this.sendOutputs(), this.config.sendInterval * 1e3);
+    this.sendInterval = this.setInterval(() => {
+      try {
+        this.sendOutputs();
+      } catch (e) {
+        this.log.error("error sending outputs: " + e);
+      }
+    }, this.config.sendInterval * 1e3);
     await this.sendOutputs();
   }
   initSocket() {
@@ -180,10 +186,51 @@ class Cmicoe extends utils.Adapter {
         this.timeout = false;
       }
     }
-    for (let idx = 0; idx < this.outputs.length; idx++) {
-      const output = this.outputs[idx];
-      await this.sendOutput(output);
+    let outputsLeft = this.outputs.slice();
+    while (outputsLeft.length > 0) {
+      const output = outputsLeft[0];
+      const allOutputs = outputsLeft.filter((o) => o.node == output.node && o.analog == output.analog);
+      const outputsToSend = allOutputs.slice(0, Math.min(4, allOutputs.length));
+      outputsLeft = outputsLeft.filter((out) => {
+        return !outputsToSend.some((o) => o.analog == out.analog && o.node == out.node && o.output == out.output);
+      });
+      const values = await Promise.all(outputsToSend.map(async (out) => {
+        const id = `out.node${out.node}.${out.analog ? "analog" : "digital"}${out.output}`;
+        const state = await this.getStateAsync(id);
+        if (!state) {
+          return null;
+        }
+        return state.val;
+      }));
+      let index = values.findIndex((s) => s == null);
+      while (index != -1) {
+        values.splice(index, 1);
+        outputsToSend.splice(index, 1);
+        index = values.findIndex((s) => s == null);
+      }
+      this.sendMultipleOutputs(outputsToSend, values);
     }
+  }
+  sendMultipleOutputs(outputs, values) {
+    const buffer = Buffer.alloc(4 + 8 * outputs.length);
+    buffer[0] = 2;
+    buffer[1] = 0;
+    buffer[2] = 4 + 8 * outputs.length;
+    buffer[3] = outputs.length;
+    for (let i = 0; i < outputs.length; i++) {
+      const output = outputs[i];
+      buffer[4 + 8 * i + 0] = output.node;
+      buffer[4 + 8 * i + 1] = output.output - 1;
+      buffer[4 + 8 * i + 2] = output.analog ? 1 : 0;
+      buffer[4 + 8 * i + 3] = output.analog ? 0 : 43;
+      buffer.writeUInt32LE(values[i] < 0 ? 4294967295 * (values[i] + 1) : values[i], 4 + 8 * i + 4);
+    }
+    this.log.debug(`sending ${buffer.toString("hex")} to ${this.cmiIP}:${this.config.cmiPort}...`);
+    this.sock.send(buffer, this.config.cmiPort, this.config.cmiIP, (err) => {
+      if (err != null) {
+        this.log.error("error sending: " + err);
+      }
+    });
   }
   async sendState(output, id, state) {
     if (state.val == null) {
@@ -249,6 +296,8 @@ class Cmicoe extends utils.Adapter {
       this.sendState(output, id, state);
     }
   }
+  // data types adapted from pyton-can-coe (Copyright (c) 2016-2025, Gerrit Beine)
+  // https://c0d3.sh/smarthome/python-can-coe/src/branch/main/coe/coe.py 
   dataTypes = {
     0: "",
     1: "\xB0C",
@@ -274,50 +323,58 @@ class Cmicoe extends utils.Adapter {
   };
   inputs = [];
   async handlePacket(packet) {
-    if (packet.length != 12) {
-      this.log.warn(`received invalid packet! Couldn't handle`);
+    if (packet.readUint8() != 2) {
+      this.log.warn(`invalid packet received. Cannot handle: ${packet.toString("hex")}`);
       return;
     }
-    const nodeID = packet.readInt8(4);
-    const outID = packet.readInt8(5) + 1;
-    const digital = packet.readInt8(6) == 0;
-    const dataType = packet.readInt8(7);
-    const data = packet.readUint32LE(8);
-    let typ = "(unknown)";
-    if (dataType in this.dataTypes) {
-      typ = this.dataTypes[dataType];
+    const length = packet.readUInt8(2);
+    const messageCount = packet.readUint8(3);
+    if (length != 4 + messageCount * 8) {
+      this.log.warn(`invalid packet received. Cannot handle: ${packet.toString("hex")}`);
+      return;
     }
-    this.log.debug(`received data from node ${nodeID}/${outID}: ${data} ${typ}`);
-    if (!this.isNodeCreated(nodeID)) {
-      const nodeChannel = `in.node${nodeID}`;
-      const nodeObj = {
-        type: "channel",
+    for (let i = 0; i < messageCount; i++) {
+      const nodeID = packet.readUint8(8 * i + 4);
+      const outID = packet.readUint8(8 * i + 5) + 1;
+      const digital = packet.readUint8(8 * i + 6) == 0;
+      const dataType = packet.readUint8(8 * i + 7);
+      const data = packet.readUint32LE(8 * i + 8);
+      let typ = "(unknown)";
+      if (dataType in this.dataTypes) {
+        typ = this.dataTypes[dataType];
+      }
+      this.log.debug(`received data from node ${nodeID}/${outID}: ${data} ${typ}`);
+      if (!this.isNodeCreated(nodeID)) {
+        const nodeChannel = `in.node${nodeID}`;
+        const nodeObj = {
+          type: "channel",
+          common: {
+            name: `Node ${nodeID}`
+          },
+          native: {},
+          _id: nodeChannel
+        };
+        await this.setObjectNotExistsAsync(nodeChannel, nodeObj);
+      }
+      const id = "in.node" + nodeID + "." + (digital ? "digital" : "analog") + outID;
+      const obj = {
+        type: "state",
         common: {
-          name: `Node ${nodeID}`
+          type: digital ? "boolean" : "number",
+          read: true,
+          write: false,
+          role: "",
+          name: `Input ${nodeID}/${outID}`
         },
         native: {},
-        _id: nodeChannel
+        _id: id
       };
-      await this.setObjectNotExistsAsync(nodeChannel, nodeObj);
+      if (!this.inputs.some((i2) => i2.analog != digital && i2.node == nodeID && i2.output == outID)) {
+        await this.setObjectNotExistsAsync(id, obj);
+        this.inputs.push({ node: nodeID, output: outID, analog: !digital });
+      }
+      this.setState(id, digital ? data == 1 ? true : false : data, true);
     }
-    const id = "in.node" + nodeID + "." + (digital ? "digital" : "analog") + outID;
-    const obj = {
-      type: "state",
-      common: {
-        type: digital ? "boolean" : "number",
-        read: true,
-        write: false,
-        role: "",
-        name: `Input ${nodeID}/${outID}`
-      },
-      native: {},
-      _id: id
-    };
-    if (!this.inputs.some((i) => i.analog != digital && i.node == nodeID && i.output == outID)) {
-      await this.setObjectNotExistsAsync(id, obj);
-      this.inputs.push({ node: nodeID, output: outID, analog: !digital });
-    }
-    this.setState(id, digital ? data == 1 ? true : false : data, true);
   }
   isNodeCreated(nodeID) {
     for (let i = 0; i < this.inputs.length; i++) {
@@ -348,6 +405,9 @@ class Cmicoe extends utils.Adapter {
     array[7] = dataType;
     const buffer = Buffer.alloc(12);
     buffer.fill(array);
+    if (data < 0) {
+      data = 4294967295 + (data + 1);
+    }
     buffer.writeUint32LE(data, 8);
     this.log.debug(`sending ${buffer.toString("hex")} to ${this.cmiIP}:${this.config.cmiPort}`);
     this.sock.send(buffer, this.config.cmiPort, this.cmiIP, (err) => {
