@@ -28,17 +28,17 @@ To send data the outputs have to be specified in the configuration. Enter all th
 Additionally the interval in which the values are sent can be specified and if the data should also be sent if it has changed.
 
 ## Changelog
+### 0.1.2 (2025-02-17)
+* downgrade to node 18
+* create channel/devices before states
+* performance improvements
+
 ### 0.1.1 (2025-02-16)
 * improved log messages
 * added log message if address/ip are already in use (probably two instances started)
 
 ### 0.1.0 (2025-02-16)
 * (FreDeko) initial release
-
-### **WORK IN PROGRESS**
-* downgrade to node 18
-* create channel/devices before states
-* performance improvements
 
 ## License
 MIT License

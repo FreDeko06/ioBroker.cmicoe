@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "news": {
+      "0.1.2": {
+        "en": "downgrade to node 18\ncreate channel/devices before states\nperformance improvements",
+        "de": "downgrade zu Node 18\nkanal/geräte vor staaten erstellen\nleistungsverbesserungen",
+        "ru": "понижение до узла 18\nсоздать канал/устройства перед штатами\nулучшение качества",
+        "pt": "downgrade para nó 18\ncriar canal/dispositivos antes de estados\nmelhorias de desempenho",
+        "nl": "downgrade naar knooppunt 18\nkanaal/apparaten aanmaken voordat staat\nprestatieverbeteringen",
+        "fr": "rétrograde au nœud 18\ncréer des canaux/dispositifs avant les états\namélioration des performances",
+        "it": "downgrade a nodo 18\ncreare canale/dispositivi prima degli stati\nmiglioramento delle prestazioni",
+        "es": "baja a nodo 18\ncrear canales/dispositivos antes de estados\nmejora de la actuación profesional",
+        "pl": "downgrade to node 18\ntworzenie kanału / urządzeń przed stanami\npoprawa wyników",
+        "uk": "внизград в вузол 18 років\nстворити канал/розробки перед державами\nпідвищення продуктивності",
+        "zh-cn": "降级为节点 第 18 条\n在状态前创建频道/设备\n业绩改进"
+      },
       "0.1.1": {
         "en": "improved log messages\nadded log message if address/ip are already in use (probably two instances started)",
         "de": "verbesserte log-nachrichten\nlog-nachricht hinzugefügt, wenn adreß/ip bereits im einsatz sind (wahrscheinlich zwei instanzen gestartet)",
