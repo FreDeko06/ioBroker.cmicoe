@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "news": {
+      "0.3.0": {
+        "en": "added support for multiple messages in one packet (receiving and sending)\nadded error handling",
+        "de": "unterstützung für mehrere nachrichten in einem paket (empfangen und senden)\nfehlerbehebung",
+        "ru": "дополнительная поддержка нескольких сообщений в одном пакете (прием и отправка)\nдополнительная обработка ошибок",
+        "pt": "suporte adicionado para várias mensagens em um pacote (receber e enviar)\nmanipulação de erro adicionado",
+        "nl": "toegevoegd ondersteuning voor meerdere berichten in één pakket (ontvangen en verzenden)\ntoegevoegde foutafhandeling",
+        "fr": "ajout de la prise en charge de plusieurs messages dans un paquet (réception et envoi)\ngestion des erreurs ajoutée",
+        "it": "supporto aggiunto per più messaggi in un unico pacchetto (ricevimento e invio)\ngestione degli errori aggiunti",
+        "es": "apoyo añadido para múltiples mensajes en un paquete (recibir y enviar)\nmanejo de errores añadido",
+        "pl": "dodane wsparcie dla wielu wiadomości w jednym pakiecie (odbiór i wysyłanie)\ndodana obsługa błędów",
+        "uk": "додана підтримка декількох повідомлень в одному пакеті (відновлення та відправлення)\nдодана обробка помилок",
+        "zh-cn": "在一个包中添加对多个消息的支持(收发)\n添加错误处理"
+      },
       "0.2.0": {
         "en": "created bind and port options",
         "de": "bind- und portoptionen erstellt",
