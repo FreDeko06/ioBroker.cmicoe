@@ -1,6 +1,13 @@
 ![Logo](admin/cmicoe.png)
 # ioBroker.cmicoe
 
+[![NPM version](https://img.shields.io/npm/v/iobroker.cmicoe.svg)](https://www.npmjs.com/package/iobroker.cmicoe)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.cmicoe.svg)](https://www.npmjs.com/package/iobroker.cmicoe)
+![Number of Installations](https://iobroker.live/badges/cmicoe-installed.svg)
+![Current version in stable repository](https://iobroker.live/badges/cmicoe-stable.svg)
+
+[![NPM](https://nodei.co/npm/iobroker.cmicoe.png?downloads=true)](https://nodei.co/npm/iobroker.cmicoe/)
+
 **Tests:** ![Test and Release](https://github.com/FreDeko06/ioBroker.cmicoe/workflows/Test%20and%20Release/badge.svg)
 
 ## cmicoe adapter for ioBroker
