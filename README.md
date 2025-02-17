@@ -28,6 +28,9 @@ To send data the outputs have to be specified in the configuration. Enter all th
 Additionally the interval in which the values are sent can be specified and if the data should also be sent if it has changed.
 
 ## Changelog
+### 0.2.0 (2025-02-17)
+* created bind and port options
+
 ### 0.1.2 (2025-02-17)
 * downgrade to node 18
 * create channel/devices before states
@@ -39,9 +42,6 @@ Additionally the interval in which the values are sent can be specified and if t
 
 ### 0.1.0 (2025-02-16)
 * (FreDeko) initial release
-
-### **WORK IN PROGRESS**
-* created bind and port options
 
 ## License
 MIT License

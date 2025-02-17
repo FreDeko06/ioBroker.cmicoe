@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "news": {
+      "0.2.0": {
+        "en": "created bind and port options",
+        "de": "bind- und portoptionen erstellt",
+        "ru": "создан привязки и порт опции",
+        "pt": "opções de ligação e porta criadas",
+        "nl": "aangemaakte bind- en poortopties",
+        "fr": "créé des options de liaison et de port",
+        "it": "opzioni di binding e porta create",
+        "es": "creado bind y opciones portuarias",
+        "pl": "utworzone opcje bind i port",
+        "uk": "створені параметри зв'язку та порту",
+        "zh-cn": "创建绑定和移植选项"
+      },
       "0.1.2": {
         "en": "downgrade to node 18\ncreate channel/devices before states\nperformance improvements",
         "de": "downgrade zu Node 18\nkanal/geräte vor staaten erstellen\nleistungsverbesserungen",
