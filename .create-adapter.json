@@ -13,7 +13,7 @@
 	"dataSource": "push",
 	"connectionIndicator": "yes",
 	"language": "TypeScript",
-	"nodeVersion": "20",
+	"nodeVersion": "18",
 	"adminUi": "html",
 	"tools": ["ESLint", "Prettier"],
 	"i18n": "JSON",
