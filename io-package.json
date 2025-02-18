@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "news": {
+      "0.3.1": {
+        "en": "fix: negative values crashed adapter",
+        "de": "fix: negative werte abgestürzt adapter",
+        "ru": "исправление: негативные значения сбои адаптер",
+        "pt": "correção: valores negativos caiu adaptador",
+        "nl": "fix: negatieve waarden gecrashte adapter",
+        "fr": "fix: valeurs négatives accidentées adaptateur",
+        "it": "correzione: valore negativo adattatore crash",
+        "es": "fijado: adaptador bloqueado de valores negativos",
+        "pl": "fix: ujemne wartości awarii adaptera",
+        "uk": "виправити: негативні значення аварійного адаптера",
+        "zh-cn": "固定: 负值崩溃适配器"
+      },
       "0.3.0": {
         "en": "added support for multiple messages in one packet (receiving and sending)\nadded error handling",
         "de": "unterstützung für mehrere nachrichten in einem paket (empfangen und senden)\nfehlerbehebung",
