@@ -83,6 +83,11 @@ class Cmicoe extends utils.Adapter {
 		} else {
 			this.initSocket();
 		}
+		let interval = this.config.sendInterval * 1000;
+		if (interval <= 0 || interval > 0xFFFFFFFF) {
+			this.log.warn(`interval must be in range 1 <= interval <= ${0xFFFFFFFF} (got ${interval}). Using default 60000 ms`)
+			interval = 60000;
+		}
 
 		this.sendInterval = this.setInterval(() => {
 			try {
@@ -90,7 +95,7 @@ class Cmicoe extends utils.Adapter {
 			} catch (e) {
 				this.log.error("error sending outputs: " + e);
 			}
-		}, this.config.sendInterval * 1000);
+		}, interval);
 		await this.sendOutputs();
 	}
 
@@ -242,7 +247,8 @@ class Cmicoe extends utils.Adapter {
 			buffer[4 + 8 * i + 1] = output.output - 1;
 			buffer[4 + 8 * i + 2] = output.analog ? 1 : 0;
 			buffer[4 + 8 * i + 3] = output.analog ? 0x0 : 0x2b;
-			buffer.writeUInt32LE(values[i] < 0 ? 0xFFFFFFFF * (values[i] + 1) : values[i], 4 + 8 * i + 4);
+			let value = values[i] >>> 0;
+			buffer.writeUInt32LE(value, 4 + 8 * i + 4);
 		}
 
 		this.log.debug(`sending ${buffer.toString("hex")} to ${this.cmiIP}:${this.config.cmiPort}...`);
@@ -444,10 +450,9 @@ class Cmicoe extends utils.Adapter {
 		const buffer = Buffer.alloc(12);
 		buffer.fill(array);
 
-		// convert negative numbers
-		if (data < 0) {
-			data = 0xFFFFFFFF + (data + 1);
-		}
+		// convert negative numbers and short to 4 bytes
+		data = data >>> 0;
+
 		buffer.writeUint32LE(data, 8);
 
 		this.log.debug(`sending ${buffer.toString("hex")} to ${this.cmiIP}:${this.config.cmiPort}`);

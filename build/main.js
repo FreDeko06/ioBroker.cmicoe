@@ -87,13 +87,18 @@ class Cmicoe extends utils.Adapter {
     } else {
       this.initSocket();
     }
+    let interval = this.config.sendInterval * 1e3;
+    if (interval <= 0 || interval > 4294967295) {
+      this.log.warn(`interval must be in range 1 <= interval <= ${4294967295} (got ${interval}). Using default 60000 ms`);
+      interval = 6e4;
+    }
     this.sendInterval = this.setInterval(() => {
       try {
         this.sendOutputs();
       } catch (e) {
         this.log.error("error sending outputs: " + e);
       }
-    }, this.config.sendInterval * 1e3);
+    }, interval);
     await this.sendOutputs();
   }
   initSocket() {
@@ -223,7 +228,8 @@ class Cmicoe extends utils.Adapter {
       buffer[4 + 8 * i + 1] = output.output - 1;
       buffer[4 + 8 * i + 2] = output.analog ? 1 : 0;
       buffer[4 + 8 * i + 3] = output.analog ? 0 : 43;
-      buffer.writeUInt32LE(values[i] < 0 ? 4294967295 * (values[i] + 1) : values[i], 4 + 8 * i + 4);
+      let value = values[i] >>> 0;
+      buffer.writeUInt32LE(value, 4 + 8 * i + 4);
     }
     this.log.debug(`sending ${buffer.toString("hex")} to ${this.cmiIP}:${this.config.cmiPort}...`);
     this.sock.send(buffer, this.config.cmiPort, this.config.cmiIP, (err) => {
@@ -405,9 +411,7 @@ class Cmicoe extends utils.Adapter {
     array[7] = dataType;
     const buffer = Buffer.alloc(12);
     buffer.fill(array);
-    if (data < 0) {
-      data = 4294967295 + (data + 1);
-    }
+    data = data >>> 0;
     buffer.writeUint32LE(data, 8);
     this.log.debug(`sending ${buffer.toString("hex")} to ${this.cmiIP}:${this.config.cmiPort}`);
     this.sock.send(buffer, this.config.cmiPort, this.cmiIP, (err) => {
