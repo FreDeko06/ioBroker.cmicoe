@@ -3,10 +3,13 @@
     "cmiIP": "ip address of the C.M.I.",
     "cmiPort": "CoE port of the C.M.I.",
     "cmicoe adapter settings": "Adapter settings for cmicoe",
-    "nodesOption": "output nodes ([node]/[d|a][output],..) e.g.: 25/d1,29/a3",
-    "option1": "",
-    "option2": "",
     "portOption": "port to listen from",
     "sendInterval": "send interval",
-    "sendOnChange": "send on change"
+    "sendOnChange": "send on change",
+    "nodeId": "Node ID",
+    "outType": "Output type",
+    "outId": "Output ID",
+    "description": "Description",
+    "unit": "Unit",
+    "output": "Ausgang"
 }

@@ -11,6 +11,8 @@ declare global {
 			sendOnChange: boolean;
 			bind: string;
 			port: number;
+			outputs: Output[];
+			inputs: Output[];
 		}
 	}
 }

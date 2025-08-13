@@ -4,9 +4,13 @@
     "cmiPort": "Coe Port du C.M.I.",
     "cmicoe adapter settings": "Paramètres d'adaptateur pour cmicoe",
     "nodesOption": "Nœuds de sortie ([nœud] / [d | a] [sortie], ..) par exemple: 25 / d1,29 / a3",
-    "option1": "option1",
-    "option2": "Option2",
     "portOption": "port à écouter",
     "sendInterval": "envoyer un intervalle",
-    "sendOnChange": "envoyer des changements"
+    "sendOnChange": "envoyer des changements",
+    "nodeId": "ID de nœud",
+    "outType": "Type de sortie",
+    "outId": "ID de sortie",
+    "description": "Description",
+    "unit": "Unité",
+    "output": "Ausgang"
 }

@@ -28,6 +28,12 @@ To send data the outputs have to be specified in the configuration. Enter all th
 Additionally the interval in which the values are sent can be specified and if the data should also be sent if it has changed.
 
 ## Changelog
+### **WORK IN PROGRESS**
+* improved config ui
+* added support for units
+* added support for names and descriptions for inputs/outputs
+* BREAKING: state names now contain names from config
+
 ### 0.3.1 (2025-02-18)
 * fix: negative values crashed adapter
 

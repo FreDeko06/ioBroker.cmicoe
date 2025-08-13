@@ -78,7 +78,8 @@
     "check": "tsc --noEmit",
     "lint": "eslint --ext .ts src/",
     "translate": "translate-adapter",
-    "release": "release-script"
+    "release": "release-script",
+    "dev-server": "dev-server"
   },
   "bugs": {
     "url": "https://github.com/FreDeko06/ioBroker.cmicoe/issues"

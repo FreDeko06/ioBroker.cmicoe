@@ -1,0 +1,247 @@
+{
+	"i18n": true,
+	"type": "tabs",
+	"items": {
+		"settings": {
+			"type": "panel",
+			"label": {
+				"en": "Settings",
+				"de": "Einstellungen"
+			},
+			"items": {
+				"bind": {
+					"type": "text",
+					"label": "bindOption",
+					"sm": 6,
+					"maxLength": 15
+				},
+				"port": {
+					"type": "port",
+					"label": "portOption",
+					"sm": 6
+				},
+				"cmiIP": {
+					"type": "text",
+					"label": "cmiIP",
+					"sm": 6,
+					"maxLength": 15
+				},
+				"cmiPort": {
+					"type": "port",
+					"label": "cmiPort",
+					"sm": 6
+				},
+				"sendInterval": {
+					"type": "text",
+					"label": "sendInterval",
+					"sm": 6,
+				},
+				"sendOnChange": {
+					"type": "checkbox",
+					"label": "sendOnChange",
+					"sm": 6,
+				}
+			}
+		},
+		"tab2": {
+			"label": {
+				"en": "Inputs",
+				"de": "Eingänge"
+			},
+			"type": "panel",
+			"items": {
+				"inputs": {
+					"type": "table",
+
+					"items": [
+						{
+							"type": "number",
+							"width": "5%",
+							"title": "Node",
+							"attr": "node",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							 
+						},
+						{
+							"type": "select",
+							"width": "10%",
+							"title": "Type",
+							"attr": "analog",
+							"options": [
+								{"label": "analog", "value": true},
+								{"label": "digital", "value": false}
+							],
+							"filter": false,
+							"sort": true
+						},
+						{
+							"type": "number",
+							"width": "5%",
+							"title": "output",
+							"attr": "output",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							 
+						},
+						{
+							"type": "text",
+							"width": "10%",
+							"title": "Name",
+							"attr": "name",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							 
+						},
+						{
+							"type": "text",
+							"width": "20%",
+							"title": "Description",
+							"attr": "desc",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							 
+						},
+						{
+							"type": "select",
+							"width": "10%",
+							"title": "Unit",
+							"attr": "unit",
+							"options": [
+								{"label": "", "value": 0},
+								{"label": "°C", "value": 1},
+								{"label": "W/m²", "value": 2},
+								{"label": "l/h", "value": 3},
+								{"label": "sec", "value": 4},
+								{"label": "min", "value": 5},
+								{"label": "K", "value": 7},
+								{"label": "%", "value": 8},
+								{"label": "kW", "value": 9},
+								{"label": "MWh", "value": 10},
+								{"label": "kWh", "value": 11},
+								{"label": "V", "value": 12},
+								{"label": "mA", "value": 13},
+								{"label": "h", "value": 14},
+								{"label": "d", "value": 15},
+								{"label": "km/h", "value": 18},
+								{"label": "Hz", "value": 19},
+								{"label": "l/m", "value": 20},
+								{"label": "bar", "value": 21},
+								{"label": "W", "value": 69},
+							],
+							"filter": false,
+							"sort": true,
+							"disabled": "data.analog == false"
+						},
+
+					]
+
+				}
+			}			
+		},
+		"tab3": {
+			"label": {
+				"en": "Outputs",
+				"de": "Ausgänge"
+			},
+			"type": "panel",
+			"items": {
+				"outputs": {
+					"type": "table",
+
+					"items": [
+						{
+							"type": "number",
+							"width": "5%",
+							"title": "Node",
+							"attr": "node",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							 
+						},
+						{
+							"type": "select",
+							"width": "10%",
+							"title": "Type",
+							"attr": "analog",
+							"options": [
+								{"label": "analog", "value": true},
+								{"label": "digital", "value": false}
+							],
+							"filter": false,
+							"sort": true,
+						},
+						{
+							"type": "number",
+							"width": "5%",
+							"title": "output",
+							"attr": "output",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							 
+						},
+						{
+							"type": "text",
+							"width": "10%",
+							"title": "Name",
+							"attr": "name",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							 
+						},
+						{
+							"type": "text",
+							"width": "20%",
+							"title": "Description",
+							"attr": "desc",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							 
+						},
+						{
+							"type": "select",
+							"width": "10%",
+							"title": "Unit",
+							"attr": "unit",
+							"options": [
+								{"label": "", "value": 0},
+								{"label": "°C", "value": 1},
+								{"label": "W/m²", "value": 2},
+								{"label": "l/h", "value": 3},
+								{"label": "sec", "value": 4},
+								{"label": "min", "value": 5},
+								{"label": "K", "value": 7},
+								{"label": "%", "value": 8},
+								{"label": "kW", "value": 9},
+								{"label": "MWh", "value": 10},
+								{"label": "kWh", "value": 11},
+								{"label": "V", "value": 12},
+								{"label": "mA", "value": 13},
+								{"label": "h", "value": 14},
+								{"label": "d", "value": 15},
+								{"label": "km/h", "value": 18},
+								{"label": "Hz", "value": 19},
+								{"label": "l/m", "value": 20},
+								{"label": "bar", "value": 21},
+								{"label": "W", "value": 69},
+							],
+							"filter": false,
+							"sort": true,
+							"disabled": "data.analog == false"
+						},
+
+					]
+
+				}
+			}			
+		}
+	}
+}

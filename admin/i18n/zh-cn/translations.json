@@ -4,9 +4,13 @@
     "cmiPort": "C.M.I.的COE港口",
     "cmicoe adapter settings": "cmicoe的适配器设置",
     "nodesOption": "输出节点（[node]/[d | a] [output]，..）例如：25/d1,29/a3",
-    "option1": "选项1",
-    "option2": "选项2",
     "portOption": "从",
     "sendInterval": "发送间隔",
-    "sendOnChange": "发送更改"
+    "sendOnChange": "发送更改",
+    "nodeId": "节点ID",
+    "outType": "输出类型",
+    "outId": "输出ID",
+    "description": "描述",
+    "unit": "单元",
+    "output": "奥斯冈"
 }

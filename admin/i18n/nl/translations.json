@@ -4,9 +4,13 @@
     "cmiPort": "COE -haven van de C.M.I.",
     "cmicoe adapter settings": "Adapterinstellingen voor cmicoe",
     "nodesOption": "Uitgangsknooppunten ([knoop]/[d | a] [output], ..) E.G.: 25/d1,29/a3",
-    "option1": "Option1",
-    "option2": "Optie2",
     "portOption": "poort om te luisteren van",
     "sendInterval": "Stuur interval",
-    "sendOnChange": "Stuur op verandering"
+    "sendOnChange": "Stuur op verandering",
+    "nodeId": "Knooppunt -ID",
+    "outType": "Uitgangstype",
+    "outId": "Uitvoer -ID",
+    "description": "Beschrijving",
+    "unit": "Eenheid",
+    "output": "Ausgang"
 }

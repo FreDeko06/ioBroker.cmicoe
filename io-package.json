@@ -96,17 +96,17 @@
       }
     },
     "titleLang": {
-      "en": "CoE with CMI",
-      "de": "COE mit CMI",
-      "ru": "Коу с CMI",
-      "pt": "Coe com CMI",
-      "nl": "Coe met CMI",
-      "fr": "COE avec CMI",
-      "it": "Coe con CMI",
-      "es": "Coe con CMI",
-      "pl": "COE z CMI",
-      "uk": "COE з CMI",
-      "zh-cn": "与CMI的COE"
+      "en": "Can over Ethernet",
+      "de": "Can over Ethernet",
+      "ru": "Can over Ethernet",
+      "pt"": "Can over Ethernet",
+      "nl"": "Can over Ethernet",
+      "fr"": "Can over Ethernet",
+      "it"": "Can over Ethernet",
+      "es"": "Can over Ethernet",
+      "pl"": "Can over Ethernet",
+      "uk"": "Can over Ethernet",
+      "zh-cn"": "Can over Ethernet"
     },
     "desc": {
       "en": "Adapter to communicate with the CMI by Technische Alternative via CoE",
@@ -147,7 +147,7 @@
     "connectionType": "local",
     "dataSource": "push",
     "adminUI": {
-      "config": "materialize"
+      "config": "json"
     },
     "dependencies": [
       {
