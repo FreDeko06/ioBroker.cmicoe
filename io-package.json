@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "news": {
+      "1.0.2": {
+        "en": "fixed degree, cubic meter symbol",
+        "de": "fester grad, kubikmetersymbol",
+        "ru": "фиксированная степень, символ кубического метра",
+        "pt": "grau fixo, símbolo de metro cúbico",
+        "nl": "vaste graad, kubieke meter symbool",
+        "fr": "degré fixe, symbole de mètre cube",
+        "it": "grado fisso, simbolo metro cubo",
+        "es": "grado fijo, símbolo del metro cúbico",
+        "pl": "stały stopień, symbol miernika sześciennego",
+        "uk": "фіксована ступінь, символ кубометра",
+        "zh-cn": "固定度, 立方米符号"
+      },
       "1.0.1": {
         "en": "fixed adapter crash on first start",
         "de": "fester adapterabsturz beim ersten start",
@@ -80,19 +93,6 @@
         "pl": "downgrade to node 18\ntworzenie kanału / urządzeń przed stanami\npoprawa wyników",
         "uk": "внизград в вузол 18 років\nстворити канал/розробки перед державами\nпідвищення продуктивності",
         "zh-cn": "降级为节点 第 18 条\n在状态前创建频道/设备\n业绩改进"
-      },
-      "0.1.1": {
-        "en": "improved log messages\nadded log message if address/ip are already in use (probably two instances started)",
-        "de": "verbesserte log-nachrichten\nlog-nachricht hinzugefügt, wenn adreß/ip bereits im einsatz sind (wahrscheinlich zwei instanzen gestartet)",
-        "ru": "улучшенные сообщения\nдобавленное сообщение журнала, если адрес/ip уже используется (возможно, два экземпляра запущены)",
-        "pt": "mensagens de log melhoradas\nadicionado mensagem de log se o endereço/ip já estiver em uso (provavelmente duas instâncias iniciadas)",
-        "nl": "verbeterde logberichten\nlogbericht toegevoegd als adres/ip al in gebruik is (waarschijnlijk twee gevallen gestart)",
-        "fr": "amélioration des messages de journal\nmessage de journal ajouté si l'adresse/ip sont déjà en utilisation (probablement deux instances ont commencé)",
-        "it": "messaggi di log migliorati\nmessaggio di registro aggiunto se indirizzo/ip sono già in uso (probabilmente due istanze avviate)",
-        "es": "mensajes de registro mejorados\nmensaje de registro añadido si la dirección/ip ya está en uso (probablemente dos casos comenzados)",
-        "pl": "ulepszone komunikaty dziennika\ndodana wiadomość dziennika, jeśli adres / ip są już w użyciu (prawdopodobnie uruchomione dwie instancje)",
-        "uk": "покращені повідомлення журналу\nдодано лог повідомлення, якщо адреса/іп вже знаходиться у використанні (щодо двох екземплярів розпочато)",
-        "zh-cn": "改进日志消息\n如果已经使用地址/ ip, 则添加日志消息( 可能已启动两个实例)"
       }
     },
     "titleLang": {
