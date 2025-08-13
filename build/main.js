@@ -75,6 +75,10 @@ class Cmicoe extends utils.Adapter {
     await this.sendOutputs();
   }
   setupIOs() {
+    if (this.config.outputs == void 0)
+      this.config.outputs = [];
+    if (this.config.inputs == void 0)
+      this.config.inputs = [];
     this.config.outputs.forEach((o) => {
       o.nodePath = `out.node${o.node}.${o.analog ? "a" : "d"}${o.output}_${o.name}`;
       this.outputs.push(o);

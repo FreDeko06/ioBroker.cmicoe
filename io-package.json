@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "news": {
+      "1.0.1": {
+        "en": "fixed adapter crash on first start",
+        "de": "fester adapterabsturz beim ersten start",
+        "ru": "фиксированный сбой адаптера при первом запуске",
+        "pt": "falha fixa do adaptador na primeira partida",
+        "nl": "vaste adapter crash bij eerste start",
+        "fr": "panne d'adaptateur fixe au premier démarrage",
+        "it": "crash dell'adattatore fisso sul primo avvio",
+        "es": "choque de adaptador fijo en el primer comienzo",
+        "pl": "stałe zderzenie adaptera przy pierwszym starcie",
+        "uk": "виправлений аварійний перехід на перший старт",
+        "zh-cn": "启动时固定适配器崩溃"
+      },
       "1.0.0": {
         "en": "improved config ui\nadded support for units\nadded support for names and descriptions for inputs/outputs\nBREAKING: state names now contain names from config",
         "de": "verbesserte config ui\nunterstützung für einheiten\nunterstützung für namen und beschreibungen für eingaben/ausgaben\nBREAKING: Namen enthalten jetzt Namen von config",
@@ -80,19 +93,6 @@
         "pl": "ulepszone komunikaty dziennika\ndodana wiadomość dziennika, jeśli adres / ip są już w użyciu (prawdopodobnie uruchomione dwie instancje)",
         "uk": "покращені повідомлення журналу\nдодано лог повідомлення, якщо адреса/іп вже знаходиться у використанні (щодо двох екземплярів розпочато)",
         "zh-cn": "改进日志消息\n如果已经使用地址/ ip, 则添加日志消息( 可能已启动两个实例)"
-      },
-      "0.1.0": {
-        "en": "initial release",
-        "de": "erstausstrahlung",
-        "ru": "первоначальный выпуск",
-        "pt": "lançamento inicial",
-        "nl": "eerste release",
-        "fr": "libération initiale",
-        "it": "rilascio iniziale",
-        "es": "liberación inicial",
-        "pl": "początkowe zwolnienie",
-        "uk": "початковий реліз",
-        "zh-cn": "初步释放"
       }
     },
     "titleLang": {
