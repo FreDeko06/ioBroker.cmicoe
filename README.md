@@ -28,6 +28,9 @@ To send data the outputs have to be specified in the configuration. Enter all th
 Additionally the interval in which the values are sent can be specified and if the data should also be sent if it has changed.
 
 ## Changelog
+### **WORK IN PROGRESS**
+* fixed degree, cubic meter symbol
+
 ### 1.0.1 (2025-08-13)
 * fixed adapter crash on first start
 

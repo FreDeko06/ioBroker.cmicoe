@@ -44,10 +44,7 @@
 			}
 		},
 		"tab2": {
-			"label": {
-				"en": "Inputs",
-				"de": "Eingänge"
-			},
+			"label": "outputs",
 			"type": "panel",
 			"items": {
 				"inputs": {
@@ -113,8 +110,8 @@
 							"attr": "unit",
 							"options": [
 								{"label": "", "value": 0},
-								{"label": "°C", "value": 1},
-								{"label": "W/m²", "value": 2},
+								{"label": "deg", "value": 1},
+								{"label": "wm", "value": 2},
 								{"label": "l/h", "value": 3},
 								{"label": "sec", "value": 4},
 								{"label": "min", "value": 5},
@@ -144,10 +141,7 @@
 			}			
 		},
 		"tab3": {
-			"label": {
-				"en": "Outputs",
-				"de": "Ausgänge"
-			},
+			"label": "inputs",
 			"type": "panel",
 			"items": {
 				"outputs": {
@@ -213,8 +207,8 @@
 							"attr": "unit",
 							"options": [
 								{"label": "", "value": 0},
-								{"label": "°C", "value": 1},
-								{"label": "W/m²", "value": 2},
+								{"label": "deg", "value": 1},
+								{"label": "wm", "value": 2},
 								{"label": "l/h", "value": 3},
 								{"label": "sec", "value": 4},
 								{"label": "min", "value": 5},

@@ -12,5 +12,9 @@
     "outId": "ID de saída",
     "description": "Descrição",
     "unit": "Unidade",
-    "output": "Ausgang"
+    "output": "Ausgang",
+    "outputs": "Saídas",
+    "inputs": "Entradas",
+    "deg": "° c",
+    "wm": "Com m²"
 }

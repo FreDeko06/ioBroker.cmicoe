@@ -12,5 +12,9 @@
     "outId": "Identyfikator wyjściowy",
     "description": "Opis",
     "unit": "Jednostka",
-    "output": "Ausgang"
+    "output": "Ausgang",
+    "outputs": "Wyjścia",
+    "inputs": "Wejścia",
+    "deg": "° C.",
+    "wm": "W/m²"
 }

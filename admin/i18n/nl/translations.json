@@ -12,5 +12,9 @@
     "outId": "Uitvoer -ID",
     "description": "Beschrijving",
     "unit": "Eenheid",
-    "output": "Ausgang"
+    "output": "Ausgang",
+    "outputs": "Uitgangen",
+    "inputs": "Invoer",
+    "deg": "° C",
+    "wm": "W/m²"
 }

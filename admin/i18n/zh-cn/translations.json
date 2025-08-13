@@ -12,5 +12,9 @@
     "outId": "输出ID",
     "description": "描述",
     "unit": "单元",
-    "output": "奥斯冈"
+    "output": "奥斯冈",
+    "outputs": "输出",
+    "inputs": "输入",
+    "deg": "°C",
+    "wm": "W/m²"
 }
