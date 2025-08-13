@@ -54,7 +54,6 @@ class Cmicoe extends utils.Adapter {
     this.cmiIP = this.config.cmiIP;
     if (this.cmiIP == "") {
       this.log.error("IP of cmi not specified! Cannot send!");
-      return;
     }
     if (this.config.bind == "") {
       this.log.error("No bind ip specified. Cannot listen!");
@@ -211,6 +210,8 @@ class Cmicoe extends utils.Adapter {
   }
   timeout = false;
   async sendOutputs() {
+    if (this.cmiIP == "")
+      return;
     if (this.lastSent > Date.now() + 18e5) {
       if (!this.timeout) {
         this.setStateChanged("timeout", true, true);
@@ -385,23 +386,6 @@ class Cmicoe extends utils.Adapter {
         this.log.warn(`${input.node}/a${input.output} has wrong unit (received ${typ} but should have been ${this.dataTypes[input.unit]})`);
       }
       const id = input.nodePath;
-      const obj = {
-        type: "state",
-        common: {
-          type: digital ? "boolean" : "number",
-          read: true,
-          write: false,
-          role: "",
-          name: `Input ${nodeID}/${outID}`,
-          unit: this.dataTypes[input.unit]
-        },
-        native: {},
-        _id: id
-      };
-      if (!this.inputs.some((i2) => i2.analog != digital && i2.node == nodeID && i2.output == outID)) {
-        await this.setObjectNotExistsAsync(id, obj);
-        this.inputs.push({ node: nodeID, output: outID, analog: !digital, desc: "", unit: 0, name: "" });
-      }
       this.setState(id, digital ? data == 1 ? true : false : data, true);
     }
   }

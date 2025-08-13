@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "0.3.1",
+    "version": "1.0.0",
     "news": {
+      "1.0.0": {
+        "en": "improved config ui\nadded support for units\nadded support for names and descriptions for inputs/outputs\nBREAKING: state names now contain names from config",
+        "de": "verbesserte config ui\nunterstützung für einheiten\nunterstützung für namen und beschreibungen für eingaben/ausgaben\nBREAKING: Namen enthalten jetzt Namen von config",
+        "ru": "улучшенная конфигурация ui\nдобавлена поддержка подразделений\nдобавлена поддержка имен и описаний для входов/выходов\nBREAKING: имена штатов теперь содержат имена из конфигураций",
+        "pt": "configuração melhorada ui\nsuporte adicionado para unidades\nsuporte adicional para nomes e descrições para entradas/saídas\nBREAKING: os nomes dos estados agora contêm nomes da configuração",
+        "nl": "verbeterde configuratie ui\ntoegevoegde steun voor eenheden\ntoegevoegde ondersteuning voor namen en beschrijvingen voor input/outputs\nBREAKING: statusnamen bevatten nu namen uit configuratie",
+        "fr": "amélioration de la configuration\nappui supplémentaire aux unités\nun support supplémentaire pour les noms et descriptions des entrées/sorties\nBREAKING: les noms d'état contiennent maintenant des noms de config",
+        "it": "migliorato config ui\nsupporto aggiunto per unità\nsupporto aggiunto per nomi e descrizioni per input/output\nBREAKING: i nomi di stato ora contengono nomi da configurazione",
+        "es": "mejorado config ui\napoyo añadido a las unidades\napoyo añadido para nombres y descripciones de entradas/salidas\nLos nombres de los estados ahora contienen nombres de config",
+        "pl": "poprawiony konfig ui\ndodane wsparcie dla jednostek\ndodane wsparcie dla nazw i opisów wejść / wyjść\nBREAKING: nazwy stanu zawierają teraz nazwy z konfigu",
+        "uk": "покращений config ui\nдодана підтримка юнітів\nдодано підтримку імен і описів для вводів/виводів\nBREAKING: державні імена тепер містять імена з конфігурації",
+        "zh-cn": "改进配置 ui\n为单位增加支持\n对输入/输出的名称和说明增加支持\n州名现在包含来自配置的名称"
+      },
       "0.3.1": {
         "en": "fix: negative values crashed adapter",
         "de": "fix: negative werte abgestürzt adapter",
@@ -80,19 +93,6 @@
         "pl": "początkowe zwolnienie",
         "uk": "початковий реліз",
         "zh-cn": "初步释放"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Початкова версія",
-        "zh-cn": "首次出版"
       }
     },
     "titleLang": {
