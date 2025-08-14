@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "news": {
+      "1.0.3": {
+        "en": "added factors to inputs/outputs settings\nupdate README",
+        "de": "zusätzliche faktoren zu eingaben / ausgabeeinstellungen\naktualisierung README",
+        "ru": "дополнительные факторы для настроек ввода/вывода\nобновление Readme",
+        "pt": "fatores adicionados às configurações de entradas/saídas\natualizar README",
+        "nl": "toegevoegde factoren aan instellingen voor input/outputs\nrEADME bijwerken",
+        "fr": "ajout de facteurs aux paramètres d'entrées/sorties\nmettre à jour README",
+        "it": "fattori aggiunti alle impostazioni di input/output\naggiornamento README",
+        "es": "factores añadidos a la configuración de entradas/salidas\nactualización README",
+        "pl": "dodawane czynniki do ustawień wejść / wyjść\naktualizacja README",
+        "uk": "додані фактори введення/вилучення параметрів\nоновлення README",
+        "zh-cn": "投入/产出设置中增加的因素\n更新读取器"
+      },
       "1.0.2": {
         "en": "fixed degree, cubic meter symbol",
         "de": "fester grad, kubikmetersymbol",
@@ -80,19 +93,6 @@
         "pl": "utworzone opcje bind i port",
         "uk": "створені параметри зв'язку та порту",
         "zh-cn": "创建绑定和移植选项"
-      },
-      "0.1.2": {
-        "en": "downgrade to node 18\ncreate channel/devices before states\nperformance improvements",
-        "de": "downgrade zu Node 18\nkanal/geräte vor staaten erstellen\nleistungsverbesserungen",
-        "ru": "понижение до узла 18\nсоздать канал/устройства перед штатами\nулучшение качества",
-        "pt": "downgrade para nó 18\ncriar canal/dispositivos antes de estados\nmelhorias de desempenho",
-        "nl": "downgrade naar knooppunt 18\nkanaal/apparaten aanmaken voordat staat\nprestatieverbeteringen",
-        "fr": "rétrograde au nœud 18\ncréer des canaux/dispositifs avant les états\namélioration des performances",
-        "it": "downgrade a nodo 18\ncreare canale/dispositivi prima degli stati\nmiglioramento delle prestazioni",
-        "es": "baja a nodo 18\ncrear canales/dispositivos antes de estados\nmejora de la actuación profesional",
-        "pl": "downgrade to node 18\ntworzenie kanału / urządzeń przed stanami\npoprawa wyników",
-        "uk": "внизград в вузол 18 років\nстворити канал/розробки перед державами\nпідвищення продуктивності",
-        "zh-cn": "降级为节点 第 18 条\n在状态前创建频道/设备\n业绩改进"
       }
     },
     "titleLang": {
