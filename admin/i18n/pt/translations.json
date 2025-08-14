@@ -16,5 +16,7 @@
     "outputs": "Saídas",
     "inputs": "Entradas",
     "deg": "° c",
-    "wm": "Com m²"
+    "wm": "Com m²",
+    "factor": "Fator",
+    "node": "Nó"
 }

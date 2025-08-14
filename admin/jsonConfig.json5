@@ -32,8 +32,10 @@
 					"sm": 6
 				},
 				"sendInterval": {
-					"type": "text",
+					"type": "number",
 					"label": "sendInterval",
+					"min": 1,
+					"max": 4294967295,
 					"sm": 6,
 				},
 				"sendOnChange": {
@@ -44,7 +46,7 @@
 			}
 		},
 		"tab2": {
-			"label": "outputs",
+			"label": "inputs",
 			"type": "panel",
 			"items": {
 				"inputs": {
@@ -54,11 +56,13 @@
 						{
 							"type": "number",
 							"width": "5%",
-							"title": "Node",
+							"title": "node",
 							"attr": "node",
 							"filter": false,
 							"sort": true,
 							"validator": "!!data.name",
+							"min": 1,
+							"max": 62
 							 
 						},
 						{
@@ -81,6 +85,8 @@
 							"filter": false,
 							"sort": true,
 							"validator": "!!data.name",
+							"min": 1,
+							"max": 64
 							 
 						},
 						{
@@ -106,7 +112,7 @@
 						{
 							"type": "select",
 							"width": "10%",
-							"title": "Unit",
+							"title": "unit",
 							"attr": "unit",
 							"options": [
 								{"label": "", "value": 0},
@@ -134,6 +140,18 @@
 							"sort": true,
 							"disabled": "data.analog == false"
 						},
+						{
+							"type": "text",
+							"width": "5%",
+							"title": "factor",
+							"attr": "factor",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							"disabled": "data.analog == false"
+						
+						}
+
 
 					]
 
@@ -141,7 +159,7 @@
 			}			
 		},
 		"tab3": {
-			"label": "inputs",
+			"label": "outputs",
 			"type": "panel",
 			"items": {
 				"outputs": {
@@ -151,11 +169,13 @@
 						{
 							"type": "number",
 							"width": "5%",
-							"title": "Node",
+							"title": "node",
 							"attr": "node",
 							"filter": false,
 							"sort": true,
 							"validator": "!!data.name",
+							"min": 1,
+							"max": 62
 							 
 						},
 						{
@@ -178,6 +198,8 @@
 							"filter": false,
 							"sort": true,
 							"validator": "!!data.name",
+							"min": 1,
+							"max": 64
 							 
 						},
 						{
@@ -203,7 +225,7 @@
 						{
 							"type": "select",
 							"width": "10%",
-							"title": "Unit",
+							"title": "unit",
 							"attr": "unit",
 							"options": [
 								{"label": "", "value": 0},
@@ -231,6 +253,17 @@
 							"sort": true,
 							"disabled": "data.analog == false"
 						},
+						{
+							"type": "text",
+							"width": "5%",
+							"title": "factor",
+							"attr": "factor",
+							"filter": false,
+							"sort": true,
+							"validator": "!!data.name",
+							"disabled": "data.analog == false"
+						
+						}
 
 					]
 

@@ -13,7 +13,8 @@ type Output = {
 	desc: string;
 	unit: number;
 	nodePath?: string;
-
+	factor: string;
+	fac?: number;
 };
 
 class Cmicoe extends utils.Adapter {
@@ -37,14 +38,11 @@ class Cmicoe extends utils.Adapter {
 	private inputs: Output[];
 
 	private lastSent: number = 0;
-
 	private sendInterval: ioBroker.Interval | undefined = undefined;
-
 	private cmiIP: string = "";
 
 	private async onReady(): Promise<void> {
 		this.setState("info.connection", false, true);
-
 
 		if (this.config.nodes != "" && (this.config.outputs == undefined || this.config.outputs.length == 0)) {
 			this.log.info("Converting old nodes string to new object...");
@@ -54,7 +52,6 @@ class Cmicoe extends utils.Adapter {
 		this.setupIOs();
 
 		await this.updateStates();
-
 
 		this.cmiIP = this.config.cmiIP;
 		if (this.cmiIP == "") {
@@ -67,8 +64,10 @@ class Cmicoe extends utils.Adapter {
 			this.initSocket();
 		}
 		let interval = this.config.sendInterval * 1000;
-		if (interval <= 0 || interval > 0xFFFFFFFF) {
-			this.log.warn(`interval must be in range 1 <= interval <= ${0xFFFFFFFF} (got ${interval}). Using default 60000 ms`)
+		if (interval <= 0 || interval > 0xffffffff) {
+			this.log.warn(
+				`interval must be in range 1 <= interval <= ${0xffffffff} (got ${interval}). Using default 60000 ms`,
+			);
 			interval = 60000;
 		}
 
@@ -86,12 +85,22 @@ class Cmicoe extends utils.Adapter {
 		if (this.config.outputs == undefined) this.config.outputs = [];
 		if (this.config.inputs == undefined) this.config.inputs = [];
 		this.config.outputs.forEach((o: Output) => {
-			o.nodePath = `out.node${o.node}.${o.analog ? "a": "d"}${o.output}_${o.name}`;
-			this.outputs.push(o)
+			o.nodePath = `out.node${o.node}.${o.analog ? "a" : "d"}${o.output}_${o.name}`;
+			if (o.factor != undefined) o.factor = o.factor.replaceAll(",", ".");
+			const fl = Number(o.factor);
+			if (isNaN(fl) || fl == 0) o.fac = 1;
+			else o.fac = fl;
+			o.name = o.name.replaceAll(this.FORBIDDEN_CHARS, "_");
+			this.outputs.push(o);
 		});
 		this.config.inputs.forEach((i) => {
-			i.nodePath = `in.node${i.node}.${i.analog ? "a": "d"}${i.output}_${i.name}`;
-			this.inputs.push(i)
+			i.nodePath = `in.node${i.node}.${i.analog ? "a" : "d"}${i.output}_${i.name}`;
+			if (i.factor != undefined) i.factor = i.factor.replaceAll(",", ".");
+			const fl = Number(i.factor);
+			if (isNaN(fl) || fl == 0) i.fac = 1;
+			else i.fac = fl;
+			i.name = i.name.replaceAll(this.FORBIDDEN_CHARS, "_");
+			this.inputs.push(i);
 		});
 	}
 
@@ -121,17 +130,17 @@ class Cmicoe extends utils.Adapter {
 					analog: !digital,
 					desc: "",
 					name: "",
-					unit: 0
+					unit: 0,
+					factor: "1",
 				};
-				this.config.outputs.push(out)
+				this.config.outputs.push(out);
 			}
 			this.log.info("Converting successful");
-		} catch (e) {
+		} catch {
 			this.log.error("Nodes setting has the wrong format! Converting failed.");
 		}
 		this.config.nodes = "";
 		this.updateConfig(this.config);
-
 	}
 
 	private async updateStates(): Promise<void> {
@@ -195,7 +204,7 @@ class Cmicoe extends utils.Adapter {
 			const nodeObj: ioBroker.Object = {
 				type: "channel",
 				common: {
-					name: `Node ${output.node}`
+					name: `Node ${output.node}`,
 				},
 				native: {},
 				_id: nodeChannel,
@@ -211,7 +220,7 @@ class Cmicoe extends utils.Adapter {
 					role: "value",
 					name: output.desc,
 					def: output.analog ? 0 : false,
-					unit: this.dataTypes[output.unit]
+					unit: this.dataTypes[output.unit],
 				},
 				native: {},
 				_id: id,
@@ -228,7 +237,7 @@ class Cmicoe extends utils.Adapter {
 	private timeout: boolean = false;
 
 	private async sendOutputs(): Promise<void> {
-		if(this.cmiIP == "") return;
+		if (this.cmiIP == "") return;
 		if (this.lastSent > Date.now() + 1.8e6) {
 			if (!this.timeout) {
 				this.setStateChanged("timeout", true, true);
@@ -245,29 +254,32 @@ class Cmicoe extends utils.Adapter {
 			}
 		}
 
-
 		let outputsLeft = this.outputs.slice();
 		while (outputsLeft.length > 0) {
 			const output = outputsLeft[0];
 			// get all outputs that can be sent in the same packet
-			const allOutputs = outputsLeft.filter(o => o.node == output.node && o.analog == output.analog);
+			const allOutputs = outputsLeft.filter((o) => o.node == output.node && o.analog == output.analog);
 			// take a maximum of 4 of them
 			const outputsToSend = allOutputs.slice(0, Math.min(4, allOutputs.length));
 
 			// remove these from the outputsLeft list
 			outputsLeft = outputsLeft.filter((out) => {
-				return !outputsToSend.some(o => o.analog == out.analog && o.node == out.node && o.output == out.output);
+				return !outputsToSend.some(
+					(o) => o.analog == out.analog && o.node == out.node && o.output == out.output,
+				);
 			});
 
 			// get the values
-			const values = await Promise.all(outputsToSend.map(async (out) => {
-				const id = out.nodePath!;
-				const state = await this.getStateAsync(id);
-				if (!state) {
-					return null;
-				}
-				return state.val as number;
-			}));
+			const values = await Promise.all(
+				outputsToSend.map(async (out) => {
+					const id = out.nodePath!;
+					const state = await this.getStateAsync(id);
+					if (!state) {
+						return null;
+					}
+					return (state.val as number) * out.fac!;
+				}),
+			);
 
 			// remove the null values
 			let index = values.findIndex((s) => s == null);
@@ -296,7 +308,7 @@ class Cmicoe extends utils.Adapter {
 			buffer[4 + 8 * i + 1] = output.output - 1;
 			buffer[4 + 8 * i + 2] = output.analog ? 1 : 0;
 			buffer[4 + 8 * i + 3] = output.analog ? output.unit : 0x2b;
-			let value = values[i] >>> 0;
+			const value = values[i] >>> 0;
 			buffer.writeUInt32LE(value, 4 + 8 * i + 4);
 		}
 
@@ -318,7 +330,7 @@ class Cmicoe extends utils.Adapter {
 			output.node,
 			output.output,
 			output.analog ? output.unit : 0x2b,
-			output.analog ? parseInt(state.val.toString()) : state.val ? 1 : 0,
+			output.analog ? parseInt(state.val.toString()) * output.fac! : state.val ? 1 : 0,
 		);
 		if (success) {
 			this.setState(id, state.val, success);
@@ -348,17 +360,17 @@ class Cmicoe extends utils.Adapter {
 			this.unsubscribeStates("*");
 
 			callback();
-		} catch (e) {
+		} catch {
 			callback();
 		}
 	}
 
 	private outputFromId(id: string): Output | null {
-		return this.outputs.find(output => id.endsWith(output.nodePath!)) || null;
+		return this.outputs.find((output) => id.endsWith(output.nodePath!)) || null;
 	}
 
 	private inputFromId(id: string): Output | null {
-		return this.inputs.find(input => id.endsWith(input.nodePath!)) || null;
+		return this.inputs.find((input) => id.endsWith(input.nodePath!)) || null;
 	}
 
 	private onStateChange(id: string, state: ioBroker.State | null | undefined): void {
@@ -372,7 +384,7 @@ class Cmicoe extends utils.Adapter {
 	}
 
 	// data types adapted from pyton-can-coe (Copyright (c) 2016-2025, Gerrit Beine)
-	// https://c0d3.sh/smarthome/python-can-coe/src/branch/main/coe/coe.py 
+	// https://c0d3.sh/smarthome/python-can-coe/src/branch/main/coe/coe.py
 	private dataTypes: { [id: number]: string } = {
 		0: "",
 		1: "°C",
@@ -396,7 +408,6 @@ class Cmicoe extends utils.Adapter {
 		43: "(bool)",
 		69: "W",
 	};
-
 
 	private async handlePacket(packet: Buffer): Promise<void> {
 		if (packet.readUint8() != 2) {
@@ -427,24 +438,25 @@ class Cmicoe extends utils.Adapter {
 			this.log.debug(`received data from node ${nodeID}/${outID}: ${data} ${typ}`);
 
 			if (!this.isInputCreated(nodeID, digital, outID)) {
-				this.log.warn(`Received from ${nodeID}/${digital?"d":"a"}${outID}, but there is no input created`);
+				this.log.warn(`Received from ${nodeID}/${digital ? "d" : "a"}${outID}, but there is no input created`);
 				continue;
 			}
 
-			const input = this.inputs.find(i => i.node == nodeID && i.analog == !digital && i.output == outID)!;
+			const input = this.inputs.find((i) => i.node == nodeID && i.analog == !digital && i.output == outID)!;
 
 			if (this.dataTypes[input.unit] != typ && input.analog) {
-				this.log.warn(`${input.node}/a${input.output} has wrong unit (received ${typ} but should have been ${this.dataTypes[input.unit]})`)
+				this.log.warn(
+					`${input.node}/a${input.output} has wrong unit (received ${typ} but should have been ${this.dataTypes[input.unit]})`,
+				);
 			}
 
 			const id = input.nodePath!;
-			this.setState(id, digital ? (data == 1 ? true : false) : data, true);
+			this.setState(id, digital ? (data == 1 ? true : false) : data * input.fac!, true);
 		}
-
 	}
 
 	private isInputCreated(nodeID: number, digital: boolean, outID: number): boolean {
-		return this.inputs.some(i => i.node == nodeID && i.analog == !digital && i.output == outID);
+		return this.inputs.some((i) => i.node == nodeID && i.analog == !digital && i.output == outID);
 	}
 
 	private send(nodeID: number, outID: number, dataType: number, data: number): boolean {

@@ -16,5 +16,7 @@
     "outputs": "Wyjścia",
     "inputs": "Wejścia",
     "deg": "° C.",
-    "wm": "W/m²"
+    "wm": "W/m²",
+    "factor": "Czynnik",
+    "node": "Węzeł"
 }

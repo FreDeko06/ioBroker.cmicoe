@@ -16,5 +16,7 @@
     "outputs": "Sorties",
     "inputs": "Entrées",
     "deg": "° C",
-    "wm": "W / m²"
+    "wm": "W / m²",
+    "factor": "Facteur",
+    "node": "Nœud"
 }

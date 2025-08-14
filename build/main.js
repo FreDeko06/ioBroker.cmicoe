@@ -75,16 +75,24 @@ class Cmicoe extends utils.Adapter {
     await this.sendOutputs();
   }
   setupIOs() {
-    if (this.config.outputs == void 0)
-      this.config.outputs = [];
-    if (this.config.inputs == void 0)
-      this.config.inputs = [];
+    if (this.config.outputs == void 0) this.config.outputs = [];
+    if (this.config.inputs == void 0) this.config.inputs = [];
     this.config.outputs.forEach((o) => {
       o.nodePath = `out.node${o.node}.${o.analog ? "a" : "d"}${o.output}_${o.name}`;
+      if (o.factor != void 0) o.factor = o.factor.replaceAll(",", ".");
+      const fl = Number(o.factor);
+      if (isNaN(fl) || fl == 0) o.fac = 1;
+      else o.fac = fl;
+      o.name = o.name.replaceAll(this.FORBIDDEN_CHARS, "_");
       this.outputs.push(o);
     });
     this.config.inputs.forEach((i) => {
       i.nodePath = `in.node${i.node}.${i.analog ? "a" : "d"}${i.output}_${i.name}`;
+      if (i.factor != void 0) i.factor = i.factor.replaceAll(",", ".");
+      const fl = Number(i.factor);
+      if (isNaN(fl) || fl == 0) i.fac = 1;
+      else i.fac = fl;
+      i.name = i.name.replaceAll(this.FORBIDDEN_CHARS, "_");
       this.inputs.push(i);
     });
   }
@@ -94,8 +102,7 @@ class Cmicoe extends utils.Adapter {
       const outputs = this.config.nodes.split(",");
       for (let idx = 0; idx < outputs.length; idx++) {
         const output = outputs[idx];
-        if (output == "")
-          continue;
+        if (output == "") continue;
         const regex = /^(\d+)\/(\w)(\d+)$/;
         const matches = output.match(regex);
         if (matches == null) {
@@ -103,10 +110,8 @@ class Cmicoe extends utils.Adapter {
           continue;
         }
         let digital = false;
-        if (matches[2].toLowerCase() == "d")
-          digital = true;
-        else if (matches[2].toLowerCase() == "a")
-          digital = false;
+        if (matches[2].toLowerCase() == "d") digital = true;
+        else if (matches[2].toLowerCase() == "a") digital = false;
         else {
           this.log.warn(`configurated node ${output} has wrong format!`);
           continue;
@@ -117,7 +122,8 @@ class Cmicoe extends utils.Adapter {
           analog: !digital,
           desc: "",
           name: "",
-          unit: 0
+          unit: 0,
+          factor: "1"
         };
         this.config.outputs.push(out);
       }
@@ -214,8 +220,7 @@ class Cmicoe extends utils.Adapter {
   }
   timeout = false;
   async sendOutputs() {
-    if (this.cmiIP == "")
-      return;
+    if (this.cmiIP == "") return;
     if (this.lastSent > Date.now() + 18e5) {
       if (!this.timeout) {
         this.setStateChanged("timeout", true, true);
@@ -245,7 +250,7 @@ class Cmicoe extends utils.Adapter {
         if (!state) {
           return null;
         }
-        return state.val;
+        return state.val * out.fac;
       }));
       let index = values.findIndex((s) => s == null);
       while (index != -1) {
@@ -287,7 +292,7 @@ class Cmicoe extends utils.Adapter {
       output.node,
       output.output,
       output.analog ? output.unit : 43,
-      output.analog ? parseInt(state.val.toString()) : state.val ? 1 : 0
+      output.analog ? parseInt(state.val.toString()) * output.fac : state.val ? 1 : 0
     );
     if (success) {
       this.setState(id, state.val, success);
@@ -309,8 +314,7 @@ class Cmicoe extends utils.Adapter {
   }
   onUnload(callback) {
     try {
-      if (this.sendInterval)
-        this.clearInterval(this.sendInterval);
+      if (this.sendInterval) this.clearInterval(this.sendInterval);
       this.sock.close();
       this.unsubscribeStates("*");
       callback();
@@ -326,11 +330,9 @@ class Cmicoe extends utils.Adapter {
   }
   onStateChange(id, state) {
     if (state) {
-      if (state.ack)
-        return;
+      if (state.ack) return;
       const output = this.outputFromId(id);
-      if (output == null)
-        return;
+      if (output == null) return;
       this.sendState(output, id, state);
     }
   }
@@ -390,15 +392,14 @@ class Cmicoe extends utils.Adapter {
         this.log.warn(`${input.node}/a${input.output} has wrong unit (received ${typ} but should have been ${this.dataTypes[input.unit]})`);
       }
       const id = input.nodePath;
-      this.setState(id, digital ? data == 1 ? true : false : data, true);
+      this.setState(id, digital ? data == 1 ? true : false : data * input.fac, true);
     }
   }
   isInputCreated(nodeID, digital, outID) {
     return this.inputs.some((i) => i.node == nodeID && i.analog == !digital && i.output == outID);
   }
   send(nodeID, outID, dataType, data) {
-    if (this.cmiIP == "")
-      return false;
+    if (this.cmiIP == "") return false;
     if (nodeID > 255 || nodeID < 0) {
       this.log.warn(`NodeID has to be between 0 and 255 (got ${nodeID})!`);
       return false;

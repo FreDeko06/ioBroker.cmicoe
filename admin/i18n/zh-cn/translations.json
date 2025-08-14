@@ -16,5 +16,7 @@
     "outputs": "输出",
     "inputs": "输入",
     "deg": "°C",
-    "wm": "W/m²"
+    "wm": "W/m²",
+    "factor": "因素",
+    "node": "节点"
 }

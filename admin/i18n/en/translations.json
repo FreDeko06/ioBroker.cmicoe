@@ -15,5 +15,7 @@
     "outputs": "Outputs",
     "inputs": "Inputs",
     "deg": "°C",
-    "wm": "W/m²"
+    "wm": "W/m²",
+    "factor": "Factor",
+    "node": "Node"
 }
