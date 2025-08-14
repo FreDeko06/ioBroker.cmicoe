@@ -12,36 +12,60 @@
 				"bind": {
 					"type": "text",
 					"label": "bindOption",
+					"xs": 6,
 					"sm": 6,
+					"md": 6,
+					"lg": 6,
+					"xl": 6,
 					"maxLength": 15
 				},
 				"port": {
 					"type": "port",
 					"label": "portOption",
-					"sm": 6
+					"xs": 6,
+					"sm": 6,
+					"md": 6,
+					"lg": 6,
+					"xl": 6,
 				},
 				"cmiIP": {
 					"type": "text",
 					"label": "cmiIP",
+					"xs": 6,
 					"sm": 6,
+					"md": 6,
+					"lg": 6,
+					"xl": 6,
 					"maxLength": 15
 				},
 				"cmiPort": {
 					"type": "port",
 					"label": "cmiPort",
-					"sm": 6
+					"xs": 6,
+					"sm": 6,
+					"md": 6,
+					"lg": 6,
+					"xl": 6,
 				},
 				"sendInterval": {
 					"type": "number",
 					"label": "sendInterval",
 					"min": 1,
 					"max": 4294967295,
+					"xs": 6,
 					"sm": 6,
+					"md": 6,
+					"lg": 6,
+					"xl": 6,
 				},
 				"sendOnChange": {
 					"type": "checkbox",
 					"label": "sendOnChange",
+					"xs": 6,
 					"sm": 6,
+					"md": 6,
+					"lg": 6,
+					"xl": 6,
 				}
 			}
 		},
