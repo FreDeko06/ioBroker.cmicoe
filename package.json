@@ -11,7 +11,10 @@
   "keywords": [
     "ioBroker",
     "Smart Home",
-    "home automation"
+    "home automation",
+    "cmi",
+    "TA",
+    "coe"
   ],
   "repository": {
     "type": "git",
