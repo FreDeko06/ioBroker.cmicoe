@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "news": {
+      "1.0.4": {
+        "en": "update dependencies",
+        "de": "aktualisierung der abhängigkeiten",
+        "ru": "обновление зависимостей",
+        "pt": "atualizar dependências",
+        "nl": "afhankelijkheden bijwerken",
+        "fr": "mettre à jour les dépendances",
+        "it": "aggiornamento dipendenze",
+        "es": "dependencias de actualización",
+        "pl": "aktualizacji zależności",
+        "uk": "оновлення залежності",
+        "zh-cn": "更新依赖关系"
+      },
       "1.0.3": {
         "en": "added factors to inputs/outputs settings\nupdate README",
         "de": "zusätzliche faktoren zu eingaben / ausgabeeinstellungen\naktualisierung README",
@@ -80,19 +93,6 @@
         "pl": "dodane wsparcie dla wielu wiadomości w jednym pakiecie (odbiór i wysyłanie)\ndodana obsługa błędów",
         "uk": "додана підтримка декількох повідомлень в одному пакеті (відновлення та відправлення)\nдодана обробка помилок",
         "zh-cn": "在一个包中添加对多个消息的支持(收发)\n添加错误处理"
-      },
-      "0.2.0": {
-        "en": "created bind and port options",
-        "de": "bind- und portoptionen erstellt",
-        "ru": "создан привязки и порт опции",
-        "pt": "opções de ligação e porta criadas",
-        "nl": "aangemaakte bind- en poortopties",
-        "fr": "créé des options de liaison et de port",
-        "it": "opzioni di binding e porta create",
-        "es": "creado bind y opciones portuarias",
-        "pl": "utworzone opcje bind i port",
-        "uk": "створені параметри зв'язку та порту",
-        "zh-cn": "创建绑定和移植选项"
       }
     },
     "titleLang": {
@@ -125,9 +125,9 @@
       "FreDeko <freddegenkolb@gmail.com>"
     ],
     "keywords": [
-	    "cmi",
-	    "TA",
-	    "coe"
+      "cmi",
+      "TA",
+      "coe"
     ],
     "licenseInformation": {
       "type": "free",
