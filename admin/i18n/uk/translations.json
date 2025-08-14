@@ -4,9 +4,19 @@
     "cmiPort": "COE Порт C.M.I.",
     "cmicoe adapter settings": "Налаштування адаптера для cmicoe",
     "nodesOption": "Вихідні вузли ([вузол]/[d | a] [вихід], ..), наприклад: 25/d1,29/a3",
-    "option1": "Варіант1",
-    "option2": "Варіант2",
     "portOption": "порт, щоб слухати з",
     "sendInterval": "Надіслати інтервал",
-    "sendOnChange": "Надіслати зміни"
+    "sendOnChange": "Надіслати зміни",
+    "nodeId": "Ідентифікатор вузла",
+    "outType": "Тип виходу",
+    "outId": "Ідентифікатор виводу",
+    "description": "Опис",
+    "unit": "Одиниця",
+    "output": "Аусганг",
+    "outputs": "Виходи",
+    "inputs": "Вхід",
+    "deg": "° C",
+    "wm": "З/м²",
+    "factor": "Фактор",
+    "node": "Вузол"
 }

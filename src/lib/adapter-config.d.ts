@@ -11,10 +11,11 @@ declare global {
 			sendOnChange: boolean;
 			bind: string;
 			port: number;
+			outputs: Output[];
+			inputs: Output[];
 		}
 	}
 }
 
 // this is required so the above AdapterConfig is found by TypeScript / type checking
-export { };
-
+export {};

@@ -4,9 +4,19 @@
     "cmiPort": "Puerto Coe del C.M.I.",
     "cmicoe adapter settings": "Ajustes del adaptador para cmicoe",
     "nodesOption": "nodos de salida ([nodo]/[d | a] [salida], ..) por ejemplo: 25/d1,29/a3",
-    "option1": "Opción1",
-    "option2": "opción 2",
     "portOption": "puerto para escuchar desde",
     "sendInterval": "enviar intervalo",
-    "sendOnChange": "enviar al cambio"
+    "sendOnChange": "enviar al cambio",
+    "nodeId": "ID de nodo",
+    "outType": "Tipo de salida",
+    "outId": "ID de salida",
+    "description": "Descripción",
+    "unit": "Unidad",
+    "output": "Ausgang",
+    "outputs": "Salidas",
+    "inputs": "Entradas",
+    "deg": "° C",
+    "wm": "W/m²",
+    "factor": "Factor",
+    "node": "Nodo"
 }

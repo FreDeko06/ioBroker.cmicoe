@@ -12,22 +12,67 @@
 
 ## cmicoe adapter for ioBroker
 
-Adapter to communicate with the CMI by Technische Alternative via CoE
+Adapter to communicate with the [CMI by Technische Alternative via CoE](https://www.ta.co.at/x2-bedienung-schnittstellen/cmi)
 
 ### DISCLAIMER
 
 This application is an independent product and is not affiliated with, endorsed by, or sponsored by Technische Alternative. All trademarks, logos, and brand names are the property of their respective owners.
 This application is designed to work with the C.M.I. but is not an official product of Technische Alternative. Compatibility with all versions of the device cannot be guaranteed.
 
-## Installation
+## Setup C.M.I.
+### Enable CoE V2
+On the C.M.I. web interface, go to Settings > CAN and choose `CoE V2 (4byte)` as CoE-Version
 
-After installing the adapter open the configuration and put in the ip address of the C.M.I. and you should already receive data from the C.M.I.
-**Note: you cannot create two instances of this adapter, because it has to bind to the local port 5442!**
-To receive data you have to create a CoE output on the CMI webpage and then the data is displayed in the iobroker state ```in.node<node>.<analog|digital><output>```, e.g. ```in.node25.analog3```.
-To send data the outputs have to be specified in the configuration. Enter all the nodes comma-seperated like this: ```<node>/<a|d><out>```, e.g. ```25/d1,25/a2```
-Additionally the interval in which the values are sent can be specified and if the data should also be sent if it has changed.
+### Configure Output
+On the C.M.I. web interface, go to Settings > Outputs > CoE and add an analog or digital output with following settings:
+
+#### IP
+Enter the iobroker server ip
+
+#### Node number / Network Output
+Enter the same number you specified in the inputs setting of the adapter
+
+## Setup adapter
+
+### Settings
+#### Local IP
+The IP-address, iobroker listens for CoE-Packages by the C.M.I.
+
+#### Local Port
+The port, iobroker listens for CoE-Packages by the C.M.I.  
+By default, the C.M.I. sends all CoEv2-Packages via port 5442  
+**This adapter only supports CoE V2!**
+
+#### C.M.I. ip address
+The IP-address, iobroker sends the CoE-Packages to
+
+#### C.M.I. port
+The port, iobroker sends the CoE-Packages to
+
+#### send interval
+The interval in seconds, in which all outputs are sent to the C.M.I.
+
+#### send on change
+If checked, the adapter also sends an output once it changes. 
+
 
 ## Changelog
+### 1.0.3 (2025-08-14)
+* added factors to inputs/outputs settings
+* update README
+
+### 1.0.2 (2025-08-13)
+* fixed degree, cubic meter symbol
+
+### 1.0.1 (2025-08-13)
+* fixed adapter crash on first start
+
+### 1.0.0 (2025-08-13)
+* improved config ui
+* added support for units
+* added support for names and descriptions for inputs/outputs
+* BREAKING: state names now contain names from config
+
 ### 0.3.1 (2025-02-18)
 * fix: negative values crashed adapter
 

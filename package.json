@@ -1,6 +1,6 @@
 {
   "name": "iobroker.cmicoe",
-  "version": "0.3.1",
+  "version": "1.0.3",
   "description": "Adapter to communicate with the CMI by Technische Alternative via CoE",
   "author": {
     "name": "FreDeko",
@@ -76,9 +76,10 @@
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:ts && npm run test:package",
     "check": "tsc --noEmit",
-    "lint": "eslint --ext .ts src/",
+    "lint": "eslint -c eslint.config.js --ext .ts src/",
     "translate": "translate-adapter",
-    "release": "release-script"
+    "release": "release-script",
+    "dev-server": "dev-server"
   },
   "bugs": {
     "url": "https://github.com/FreDeko06/ioBroker.cmicoe/issues"

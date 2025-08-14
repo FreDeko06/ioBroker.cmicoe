@@ -1,8 +1,60 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "0.3.1",
+    "version": "1.0.3",
     "news": {
+      "1.0.3": {
+        "en": "added factors to inputs/outputs settings\nupdate README",
+        "de": "zusätzliche faktoren zu eingaben / ausgabeeinstellungen\naktualisierung README",
+        "ru": "дополнительные факторы для настроек ввода/вывода\nобновление Readme",
+        "pt": "fatores adicionados às configurações de entradas/saídas\natualizar README",
+        "nl": "toegevoegde factoren aan instellingen voor input/outputs\nrEADME bijwerken",
+        "fr": "ajout de facteurs aux paramètres d'entrées/sorties\nmettre à jour README",
+        "it": "fattori aggiunti alle impostazioni di input/output\naggiornamento README",
+        "es": "factores añadidos a la configuración de entradas/salidas\nactualización README",
+        "pl": "dodawane czynniki do ustawień wejść / wyjść\naktualizacja README",
+        "uk": "додані фактори введення/вилучення параметрів\nоновлення README",
+        "zh-cn": "投入/产出设置中增加的因素\n更新读取器"
+      },
+      "1.0.2": {
+        "en": "fixed degree, cubic meter symbol",
+        "de": "fester grad, kubikmetersymbol",
+        "ru": "фиксированная степень, символ кубического метра",
+        "pt": "grau fixo, símbolo de metro cúbico",
+        "nl": "vaste graad, kubieke meter symbool",
+        "fr": "degré fixe, symbole de mètre cube",
+        "it": "grado fisso, simbolo metro cubo",
+        "es": "grado fijo, símbolo del metro cúbico",
+        "pl": "stały stopień, symbol miernika sześciennego",
+        "uk": "фіксована ступінь, символ кубометра",
+        "zh-cn": "固定度, 立方米符号"
+      },
+      "1.0.1": {
+        "en": "fixed adapter crash on first start",
+        "de": "fester adapterabsturz beim ersten start",
+        "ru": "фиксированный сбой адаптера при первом запуске",
+        "pt": "falha fixa do adaptador na primeira partida",
+        "nl": "vaste adapter crash bij eerste start",
+        "fr": "panne d'adaptateur fixe au premier démarrage",
+        "it": "crash dell'adattatore fisso sul primo avvio",
+        "es": "choque de adaptador fijo en el primer comienzo",
+        "pl": "stałe zderzenie adaptera przy pierwszym starcie",
+        "uk": "виправлений аварійний перехід на перший старт",
+        "zh-cn": "启动时固定适配器崩溃"
+      },
+      "1.0.0": {
+        "en": "improved config ui\nadded support for units\nadded support for names and descriptions for inputs/outputs\nBREAKING: state names now contain names from config",
+        "de": "verbesserte config ui\nunterstützung für einheiten\nunterstützung für namen und beschreibungen für eingaben/ausgaben\nBREAKING: Namen enthalten jetzt Namen von config",
+        "ru": "улучшенная конфигурация ui\nдобавлена поддержка подразделений\nдобавлена поддержка имен и описаний для входов/выходов\nBREAKING: имена штатов теперь содержат имена из конфигураций",
+        "pt": "configuração melhorada ui\nsuporte adicionado para unidades\nsuporte adicional para nomes e descrições para entradas/saídas\nBREAKING: os nomes dos estados agora contêm nomes da configuração",
+        "nl": "verbeterde configuratie ui\ntoegevoegde steun voor eenheden\ntoegevoegde ondersteuning voor namen en beschrijvingen voor input/outputs\nBREAKING: statusnamen bevatten nu namen uit configuratie",
+        "fr": "amélioration de la configuration\nappui supplémentaire aux unités\nun support supplémentaire pour les noms et descriptions des entrées/sorties\nBREAKING: les noms d'état contiennent maintenant des noms de config",
+        "it": "migliorato config ui\nsupporto aggiunto per unità\nsupporto aggiunto per nomi e descrizioni per input/output\nBREAKING: i nomi di stato ora contengono nomi da configurazione",
+        "es": "mejorado config ui\napoyo añadido a las unidades\napoyo añadido para nombres y descripciones de entradas/salidas\nLos nombres de los estados ahora contienen nombres de config",
+        "pl": "poprawiony konfig ui\ndodane wsparcie dla jednostek\ndodane wsparcie dla nazw i opisów wejść / wyjść\nBREAKING: nazwy stanu zawierają teraz nazwy z konfigu",
+        "uk": "покращений config ui\nдодана підтримка юнітів\nдодано підтримку імен і описів для вводів/виводів\nBREAKING: державні імена тепер містять імена з конфігурації",
+        "zh-cn": "改进配置 ui\n为单位增加支持\n对输入/输出的名称和说明增加支持\n州名现在包含来自配置的名称"
+      },
       "0.3.1": {
         "en": "fix: negative values crashed adapter",
         "de": "fix: negative werte abgestürzt adapter",
@@ -41,72 +93,20 @@
         "pl": "utworzone opcje bind i port",
         "uk": "створені параметри зв'язку та порту",
         "zh-cn": "创建绑定和移植选项"
-      },
-      "0.1.2": {
-        "en": "downgrade to node 18\ncreate channel/devices before states\nperformance improvements",
-        "de": "downgrade zu Node 18\nkanal/geräte vor staaten erstellen\nleistungsverbesserungen",
-        "ru": "понижение до узла 18\nсоздать канал/устройства перед штатами\nулучшение качества",
-        "pt": "downgrade para nó 18\ncriar canal/dispositivos antes de estados\nmelhorias de desempenho",
-        "nl": "downgrade naar knooppunt 18\nkanaal/apparaten aanmaken voordat staat\nprestatieverbeteringen",
-        "fr": "rétrograde au nœud 18\ncréer des canaux/dispositifs avant les états\namélioration des performances",
-        "it": "downgrade a nodo 18\ncreare canale/dispositivi prima degli stati\nmiglioramento delle prestazioni",
-        "es": "baja a nodo 18\ncrear canales/dispositivos antes de estados\nmejora de la actuación profesional",
-        "pl": "downgrade to node 18\ntworzenie kanału / urządzeń przed stanami\npoprawa wyników",
-        "uk": "внизград в вузол 18 років\nстворити канал/розробки перед державами\nпідвищення продуктивності",
-        "zh-cn": "降级为节点 第 18 条\n在状态前创建频道/设备\n业绩改进"
-      },
-      "0.1.1": {
-        "en": "improved log messages\nadded log message if address/ip are already in use (probably two instances started)",
-        "de": "verbesserte log-nachrichten\nlog-nachricht hinzugefügt, wenn adreß/ip bereits im einsatz sind (wahrscheinlich zwei instanzen gestartet)",
-        "ru": "улучшенные сообщения\nдобавленное сообщение журнала, если адрес/ip уже используется (возможно, два экземпляра запущены)",
-        "pt": "mensagens de log melhoradas\nadicionado mensagem de log se o endereço/ip já estiver em uso (provavelmente duas instâncias iniciadas)",
-        "nl": "verbeterde logberichten\nlogbericht toegevoegd als adres/ip al in gebruik is (waarschijnlijk twee gevallen gestart)",
-        "fr": "amélioration des messages de journal\nmessage de journal ajouté si l'adresse/ip sont déjà en utilisation (probablement deux instances ont commencé)",
-        "it": "messaggi di log migliorati\nmessaggio di registro aggiunto se indirizzo/ip sono già in uso (probabilmente due istanze avviate)",
-        "es": "mensajes de registro mejorados\nmensaje de registro añadido si la dirección/ip ya está en uso (probablemente dos casos comenzados)",
-        "pl": "ulepszone komunikaty dziennika\ndodana wiadomość dziennika, jeśli adres / ip są już w użyciu (prawdopodobnie uruchomione dwie instancje)",
-        "uk": "покращені повідомлення журналу\nдодано лог повідомлення, якщо адреса/іп вже знаходиться у використанні (щодо двох екземплярів розпочато)",
-        "zh-cn": "改进日志消息\n如果已经使用地址/ ip, 则添加日志消息( 可能已启动两个实例)"
-      },
-      "0.1.0": {
-        "en": "initial release",
-        "de": "erstausstrahlung",
-        "ru": "первоначальный выпуск",
-        "pt": "lançamento inicial",
-        "nl": "eerste release",
-        "fr": "libération initiale",
-        "it": "rilascio iniziale",
-        "es": "liberación inicial",
-        "pl": "początkowe zwolnienie",
-        "uk": "початковий реліз",
-        "zh-cn": "初步释放"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Початкова версія",
-        "zh-cn": "首次出版"
       }
     },
     "titleLang": {
-      "en": "CoE with CMI",
-      "de": "COE mit CMI",
-      "ru": "Коу с CMI",
-      "pt": "Coe com CMI",
-      "nl": "Coe met CMI",
-      "fr": "COE avec CMI",
-      "it": "Coe con CMI",
-      "es": "Coe con CMI",
-      "pl": "COE z CMI",
-      "uk": "COE з CMI",
-      "zh-cn": "与CMI的COE"
+      "en": "Can over Ethernet",
+      "de": "Can over Ethernet",
+      "ru": "Can over Ethernet",
+      "pt": "Can over Ethernet",
+      "nl": "Can over Ethernet",
+      "fr": "Can over Ethernet",
+      "it": "Can over Ethernet",
+      "es": "Can over Ethernet",
+      "pl": "Can over Ethernet",
+      "uk": "Can over Ethernet",
+      "zh-cn": "Can over Ethernet"
     },
     "desc": {
       "en": "Adapter to communicate with the CMI by Technische Alternative via CoE",
@@ -147,7 +147,7 @@
     "connectionType": "local",
     "dataSource": "push",
     "adminUI": {
-      "config": "materialize"
+      "config": "json"
     },
     "dependencies": [
       {
