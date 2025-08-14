@@ -75,6 +75,11 @@
 			"items": {
 				"inputs": {
 					"type": "table",
+					"xs": 6,
+					"sm": 6,
+					"md": 6,
+					"lg": 6,
+					"xl": 6,
 
 					"items": [
 						{
@@ -188,6 +193,11 @@
 			"items": {
 				"outputs": {
 					"type": "table",
+					"xs": 6,
+					"sm": 6,
+					"md": 6,
+					"lg": 6,
+					"xl": 6,
 
 					"items": [
 						{
