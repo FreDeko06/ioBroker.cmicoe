@@ -13,8 +13,12 @@ type Output = {
 	desc: string;
 	unit: number;
 	nodePath?: string;
-	factor: string;
-	fac?: number;
+};
+
+type DataType = {
+	name: string;
+	symbol: string;
+	decimal: number;
 };
 
 class Cmicoe extends utils.Adapter {
@@ -86,20 +90,18 @@ class Cmicoe extends utils.Adapter {
 		if (this.config.inputs == undefined) this.config.inputs = [];
 		this.config.outputs.forEach((o: Output) => {
 			o.nodePath = `out.node${o.node}.${o.analog ? "a" : "d"}${o.output}_${o.name}`;
-			if (o.factor != undefined) o.factor = o.factor.replaceAll(",", ".");
-			const fl = Number(o.factor);
-			if (isNaN(fl) || fl == 0) o.fac = 1;
-			else o.fac = fl;
 			o.name = o.name.replaceAll(this.FORBIDDEN_CHARS, "_");
+			if (!(o.unit in this.dataTypes)) {
+				o.unit = 0;
+			}
 			this.outputs.push(o);
 		});
 		this.config.inputs.forEach((i) => {
 			i.nodePath = `in.node${i.node}.${i.analog ? "a" : "d"}${i.output}_${i.name}`;
-			if (i.factor != undefined) i.factor = i.factor.replaceAll(",", ".");
-			const fl = Number(i.factor);
-			if (isNaN(fl) || fl == 0) i.fac = 1;
-			else i.fac = fl;
 			i.name = i.name.replaceAll(this.FORBIDDEN_CHARS, "_");
+			if (!(i.unit in this.dataTypes)) {
+				i.unit = 0;
+			}
 			this.inputs.push(i);
 		});
 	}
@@ -131,7 +133,6 @@ class Cmicoe extends utils.Adapter {
 					desc: "",
 					name: "",
 					unit: 0,
-					factor: "1",
 				};
 				this.config.outputs.push(out);
 			}
@@ -220,7 +221,7 @@ class Cmicoe extends utils.Adapter {
 					role: "value",
 					name: output.desc,
 					def: output.analog ? 0 : false,
-					unit: this.dataTypes[output.unit],
+					unit: this.dataTypes[output.unit].symbol,
 				},
 				native: {},
 				_id: id,
@@ -277,7 +278,7 @@ class Cmicoe extends utils.Adapter {
 					if (!state) {
 						return null;
 					}
-					return (state.val as number) * out.fac!;
+					return (state.val as number) * 10 ** this.dataTypes[out.unit].decimal;
 				}),
 			);
 
@@ -330,7 +331,11 @@ class Cmicoe extends utils.Adapter {
 			output.node,
 			output.output,
 			output.analog ? output.unit : 0x2b,
-			output.analog ? parseInt(state.val.toString()) * output.fac! : state.val ? 1 : 0,
+			output.analog
+				? Math.trunc((state.val as number) * 10 ** this.dataTypes[output.unit].decimal)
+				: state.val
+					? 1
+					: 0,
 		);
 		if (success) {
 			this.setState(id, state.val, success);
@@ -383,30 +388,56 @@ class Cmicoe extends utils.Adapter {
 		}
 	}
 
-	// data types adapted from pyton-can-coe (Copyright (c) 2016-2025, Gerrit Beine)
-	// https://c0d3.sh/smarthome/python-can-coe/src/branch/main/coe/coe.py
-	private dataTypes: { [id: number]: string } = {
-		0: "",
-		1: "°C",
-		2: "W/m²",
-		3: "l/h",
-		4: "sec",
-		5: "min",
-		7: "K",
-		8: "%",
-		9: "kW",
-		10: "MWh",
-		11: "kWh",
-		12: "V",
-		13: "mA",
-		14: "h",
-		15: "d",
-		18: "km/h",
-		19: "Hz",
-		20: "l/m",
-		21: "bar",
-		43: "(bool)",
-		69: "W",
+	// data types from https://fci.ta.co.at/docu/developer
+	private dataTypes: { [id: number]: DataType } = {
+		0: { symbol: "", name: "Dimensionless", decimal: 0 },
+		1: { symbol: "°C", name: "Temperature °C", decimal: 1 },
+		2: { symbol: "W/m²", name: "Solar radiation", decimal: 0 },
+		3: { symbol: "l/h", name: "Flow rate l/h", decimal: 0 },
+		4: { symbol: "s", name: "Seconds", decimal: 0 },
+		5: { symbol: "min", name: "Minutes", decimal: 0 },
+		8: { symbol: "%", name: "Percent", decimal: 1 },
+		10: { symbol: "kW", name: "Output kW", decimal: 2 },
+		11: { symbol: "kWh", name: "Energy kWh", decimal: 1 },
+		12: { symbol: "MWh", name: "Energy MWh", decimal: 0 },
+		13: { symbol: "V", name: "Voltage", decimal: 2 },
+		14: { symbol: "mA", name: "Amperage mA", decimal: 1 },
+		15: { symbol: "hr", name: "Hours", decimal: 0 },
+		16: { symbol: "days", name: "Days", decimal: 0 },
+		17: { symbol: "pulses", name: "Number of pulses", decimal: 0 },
+		18: { symbol: "kΩ", name: "Resistance", decimal: 2 },
+		19: { symbol: "l", name: "Litres", decimal: 0 },
+		20: { symbol: "km/h", name: "Speed km/h", decimal: 0 },
+		21: { symbol: "Hz", name: "Frequency", decimal: 2 },
+		22: { symbol: "l/min", name: "Flow rate l/min", decimal: 0 },
+		23: { symbol: "bar", name: "Pressure bar", decimal: 2 },
+		24: { symbol: "", name: "Performance factor | Dimesionless (.2)", decimal: 2 },
+		26: { symbol: "m", name: "Length m", decimal: 1 },
+		27: { symbol: "mm", name: "Length mm", decimal: 1 },
+		28: { symbol: "m³", name: "Cubic metres", decimal: 0 },
+		35: { symbol: "l/d", name: "Flow rate l/d", decimal: 0 },
+		36: { symbol: "m/s", name: "Speed m/s", decimal: 0 },
+		37: { symbol: "m³/min", name: "Flow rate m³/min", decimal: 0 },
+		38: { symbol: "m³/h", name: "Flow rate m³/h", decimal: 0 },
+		39: { symbol: "m³/d", name: "Flow rate m³/d", decimal: 0 },
+		50: { symbol: "€", name: "Euro", decimal: 2 },
+		51: { symbol: "$", name: "Dollar", decimal: 2 },
+		52: { symbol: "g/m³", name: "Absolute humidity", decimal: 1 },
+		53: { symbol: "", name: "Dimensionless (.5)", decimal: 5 },
+		54: { symbol: "°", name: "Degree (angle)", decimal: 1 },
+		58: { symbol: "", name: "Dimensionless (.1)", decimal: 1 },
+		60: { symbol: "", name: "Time in minutes", decimal: 0 },
+		63: { symbol: "A", name: "Amperage", decimal: 1 },
+		65: { symbol: "mbar", name: "Pressure mbar", decimal: 1 },
+		66: { symbol: "Pa", name: "Pressure Pa", decimal: 0 },
+		67: { symbol: "ppm", name: "CO2 content (ppm)", decimal: 0 },
+		69: { symbol: "W", name: "Output W", decimal: 0 },
+		70: { symbol: "t", name: "Weight t", decimal: 2 },
+		71: { symbol: "kg", name: "Weight kg", decimal: 1 },
+		72: { symbol: "g", name: "Weight g", decimal: 1 },
+		73: { symbol: "cm", name: "Length cm", decimal: 1 },
+		76: { symbol: "Bq/m³", name: "Radon concentration", decimal: 0 },
+		77: { symbol: "ct/kWh", name: "Price ct/kWh", decimal: 3 },
 	};
 
 	private async handlePacket(packet: Buffer): Promise<void> {
@@ -428,11 +459,11 @@ class Cmicoe extends utils.Adapter {
 			const outID = packet.readUint8(8 * i + 5) + 1;
 			const digital: boolean = packet.readUint8(8 * i + 6) == 0;
 			const dataType = packet.readUint8(8 * i + 7);
-			const data = packet.readUint32LE(8 * i + 8);
+			const data = packet.readInt32LE(8 * i + 8);
 
 			let typ = "(unknown)";
 			if (dataType in this.dataTypes) {
-				typ = this.dataTypes[dataType];
+				typ = this.dataTypes[dataType].name;
 			}
 
 			this.log.debug(`received data from node ${nodeID}/${outID}: ${data} ${typ}`);
@@ -444,14 +475,18 @@ class Cmicoe extends utils.Adapter {
 
 			const input = this.inputs.find((i) => i.node == nodeID && i.analog == !digital && i.output == outID)!;
 
-			if (this.dataTypes[input.unit] != typ && input.analog) {
+			if (input.unit != dataType && input.analog) {
 				this.log.warn(
-					`${input.node}/a${input.output} has wrong unit (received ${typ} but should have been ${this.dataTypes[input.unit]})`,
+					`${input.node}/a${input.output} has wrong unit (received "${typ}" but input is configured as "${this.dataTypes[input.unit].name}")`,
 				);
 			}
 
 			const id = input.nodePath!;
-			this.setState(id, digital ? (data == 1 ? true : false) : data * input.fac!, true);
+			this.setState(
+				id,
+				digital ? (data == 1 ? true : false) : data / 10 ** this.dataTypes[input.unit].decimal,
+				true,
+			);
 		}
 	}
 
