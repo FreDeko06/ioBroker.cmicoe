@@ -419,7 +419,7 @@ class Cmicoe extends utils.Adapter {
       const input = this.inputs.find((i2) => i2.node == nodeID && i2.analog == !digital && i2.output == outID);
       if (input.unit != dataType && input.analog) {
         this.log.warn(
-          `${input.node}/a${input.output} has wrong unit (received "${typ}" but should have been "${this.dataTypes[input.unit].name}")`
+          `${input.node}/a${input.output} has wrong unit (received "${typ}" but input is configured as "${this.dataTypes[input.unit].name}")`
         );
       }
       const id = input.nodePath;

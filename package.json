@@ -1,6 +1,6 @@
 {
   "name": "iobroker.cmicoe",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Adapter to communicate with the CMI by Technische Alternative via CoE",
   "author": {
     "name": "FreDeko",

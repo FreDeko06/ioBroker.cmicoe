@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.0.5",
+    "version": "1.1.0",
     "news": {
+      "1.1.0": {
+        "en": "added units from https://fci.ta.co.at/docu/developer\nremoved factors, decimals are computed automatically from the unit\nfixed problems with negative numbers",
+        "de": "zusätzliche einheiten von https://fci.ta.co.at/docu/developer\nentfernte faktoren, dezimals werden automatisch aus der einheit berechnet\nfeste probleme mit negativen zahlen",
+        "ru": "добавлены единицы https://fci.ta.co.at/docu/developer\nудаленные факторы, десятичные числа вычисляются автоматически из единицы\nфиксированные проблемы с отрицательными числами",
+        "pt": "unidades adicionadas de https://fci.ta.co.at/docu/developer\nfatores removidos, decimais são calculados automaticamente da unidade\nproblemas fixos com números negativos",
+        "nl": "de commissie is van mening dat er geen sprake is van staatssteun\nverwijderde factoren, decimalen worden automatisch berekend uit de eenheid\nvaste problemen met negatieve getallen",
+        "fr": "unités ajoutées à partir de https://fci.ta.co.at/docu/developer\nfacteurs supprimés, décimales sont calculées automatiquement à partir de l'unité\nproblèmes fixes avec des nombres négatifs",
+        "it": "unità aggiuntive da https://fci.ta.co.at/docu/developer\nfattori rimossi, i decimali vengono calcolati automaticamente dall'unità\nproblemi fissi con numeri negativi",
+        "es": "unidades añadidas en https://fci.ta.co.at/docu/developer\nfactores eliminados, los decimales se calculan automáticamente desde la unidad\nproblemas fijos con números negativos",
+        "pl": "dodaje się jednostki od https: / / fci.ta.co.at / docu / developer\nusunięte czynniki, ułamki dziesiętne są obliczane automatycznie z jednostki\nstałe problemy z liczbami ujemnymi",
+        "uk": "додано блоки з https://fci.ta.co.at/docu/developer\nвидалені фактори, комбінезон комп’ютерні автоматично від блоку\nвиправлені проблеми з негативними числами",
+        "zh-cn": "从https://fci.ta.co.at/docu/developer中添加的单位\n删除的系数, 十进制从单位自动计算\n负数的固定问题"
+      },
       "1.0.5": {
         "en": "fixed layout",
         "de": "anlage",
@@ -80,19 +93,6 @@
         "pl": "poprawiony konfig ui\ndodane wsparcie dla jednostek\ndodane wsparcie dla nazw i opisów wejść / wyjść\nBREAKING: nazwy stanu zawierają teraz nazwy z konfigu",
         "uk": "покращений config ui\nдодана підтримка юнітів\nдодано підтримку імен і описів для вводів/виводів\nBREAKING: державні імена тепер містять імена з конфігурації",
         "zh-cn": "改进配置 ui\n为单位增加支持\n对输入/输出的名称和说明增加支持\n州名现在包含来自配置的名称"
-      },
-      "0.3.1": {
-        "en": "fix: negative values crashed adapter",
-        "de": "fix: negative werte abgestürzt adapter",
-        "ru": "исправление: негативные значения сбои адаптер",
-        "pt": "correção: valores negativos caiu adaptador",
-        "nl": "fix: negatieve waarden gecrashte adapter",
-        "fr": "fix: valeurs négatives accidentées adaptateur",
-        "it": "correzione: valore negativo adattatore crash",
-        "es": "fijado: adaptador bloqueado de valores negativos",
-        "pl": "fix: ujemne wartości awarii adaptera",
-        "uk": "виправити: негативні значення аварійного адаптера",
-        "zh-cn": "固定: 负值崩溃适配器"
       }
     },
     "titleLang": {

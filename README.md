@@ -57,7 +57,7 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.1.0 (2025-08-18)
 * added units from https://fci.ta.co.at/docu/developer
 * removed factors, decimals are computed automatically from the unit
 * fixed problems with negative numbers
