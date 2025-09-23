@@ -46,7 +46,7 @@ class Cmicoe extends utils.Adapter {
 	private cmiIP: string = "";
 
 	private async onReady(): Promise<void> {
-		this.setState("info.connection", false, true);
+		await this.setState("info.connection", false, true);
 
 		if (this.config.nodes != "" && (this.config.outputs == undefined || this.config.outputs.length == 0)) {
 			this.log.info("Converting old nodes string to new object...");
@@ -76,18 +76,22 @@ class Cmicoe extends utils.Adapter {
 		}
 
 		this.sendInterval = this.setInterval(() => {
-			try {
-				this.sendOutputs();
-			} catch (e) {
-				this.log.error("error sending outputs: " + e);
-			}
+			this.sendOutputs()
+				.then()
+				.catch((e) => {
+					this.log.error(`error sending outputs: ${e}`);
+				});
 		}, interval);
 		await this.sendOutputs();
 	}
 
 	private setupIOs(): void {
-		if (this.config.outputs == undefined) this.config.outputs = [];
-		if (this.config.inputs == undefined) this.config.inputs = [];
+		if (this.config.outputs == undefined) {
+			this.config.outputs = [];
+		}
+		if (this.config.inputs == undefined) {
+			this.config.inputs = [];
+		}
 		this.config.outputs.forEach((o: Output) => {
 			o.nodePath = `out.node${o.node}.${o.analog ? "a" : "d"}${o.output}_${o.name}`;
 			o.name = o.name.replaceAll(this.FORBIDDEN_CHARS, "_");
@@ -112,17 +116,21 @@ class Cmicoe extends utils.Adapter {
 			const outputs = this.config.nodes.split(",");
 			for (let idx = 0; idx < outputs.length; idx++) {
 				const output = outputs[idx];
-				if (output == "") continue;
+				if (output == "") {
+					continue;
+				}
 				const regex = /^(\d+)\/(\w)(\d+)$/;
 				const matches: RegExpMatchArray | null = output.match(regex);
 				if (matches == null) {
 					this.log.warn(`output configuration "${output}" has wrong format (no match)!`);
 					continue;
 				}
-				let digital: boolean = false;
-				if (matches[2].toLowerCase() == "d") digital = true;
-				else if (matches[2].toLowerCase() == "a") digital = false;
-				else {
+				let digital = false;
+				if (matches[2].toLowerCase() == "d") {
+					digital = true;
+				} else if (matches[2].toLowerCase() == "a") {
+					digital = false;
+				} else {
 					this.log.warn(`configurated node ${output} has wrong format!`);
 					continue;
 				}
@@ -141,7 +149,9 @@ class Cmicoe extends utils.Adapter {
 			this.log.error("Nodes setting has the wrong format! Converting failed.");
 		}
 		this.config.nodes = "";
-		this.updateConfig(this.config);
+		this.updateConfig(this.config)
+			.then()
+			.catch((e) => this.log.error(`Failed to convert node string: ${e}`));
 	}
 
 	private async updateStates(): Promise<void> {
@@ -160,7 +170,7 @@ class Cmicoe extends utils.Adapter {
 		this.sock.on("listening", () => {
 			const addr = this.sock.address();
 			this.log.debug(`socket listening on ${addr.address}:${addr.port}`);
-			this.setState("info.connection", true, true);
+			void this.setState("info.connection", true, true);
 			this.socketConnected = true;
 		});
 		this.sock.on("error", (err) => {
@@ -178,9 +188,11 @@ class Cmicoe extends utils.Adapter {
 	private async delUnusedNodes(): Promise<void> {
 		const objs = await this.getAdapterObjectsAsync();
 		for (const id in objs) {
-			if (id.endsWith("info.connection")) continue;
+			if (id.endsWith("info.connection")) {
+				continue;
+			}
 			const obj = objs[id];
-			if (id.startsWith("cmicoe." + this.instance + ".in") && obj.type == "state") {
+			if (id.startsWith(`cmicoe.${this.instance}.in`) && obj.type == "state") {
 				const output: Output | null = this.inputFromId(id);
 				if (output == null) {
 					this.log.warn(`state ${id} is no longer used. Deleting...`);
@@ -189,7 +201,7 @@ class Cmicoe extends utils.Adapter {
 				}
 			}
 
-			if (id.startsWith("cmicoe." + this.instance + ".out") && obj.type == "state") {
+			if (id.startsWith(`cmicoe.${this.instance}.out`) && obj.type == "state") {
 				const output: Output | null = this.outputFromId(id);
 				if (output == null) {
 					this.log.warn(`state ${id} is no longer used. Deleting...`);
@@ -199,19 +211,21 @@ class Cmicoe extends utils.Adapter {
 			}
 
 			if (obj.type == "channel") {
-				if (obj.common.name == undefined || !obj.common.name.toString().startsWith("Node")) continue;
-				const node = Number(obj.common.name.toString().substring("Node ".length));
+				if (obj.common.name == undefined || !JSON.stringify(obj.common.name).startsWith("Node")) {
+					continue;
+				}
+				const node = Number(JSON.stringify(obj.common.name).substring("Node ".length));
 				if (isNaN(node)) {
 					continue;
 				}
 				if (
-					id.startsWith("cmicoe." + this.instance + ".in.") &&
+					id.startsWith(`cmicoe.${this.instance}.in.`) &&
 					!this.inputs.some((out: Output) => out.node == node)
 				) {
 					await this.delObjectAsync(id);
 				}
 				if (
-					id.startsWith("cmicoe." + this.instance + ".out.") &&
+					id.startsWith(`cmicoe.${this.instance}.out.`) &&
 					!this.outputs.some((out: Output) => out.node == node)
 				) {
 					await this.delObjectAsync(id);
@@ -261,7 +275,9 @@ class Cmicoe extends utils.Adapter {
 	private timeout: boolean = false;
 
 	private async sendOutputs(): Promise<void> {
-		if (this.cmiIP == "") return;
+		if (this.cmiIP == "") {
+			return;
+		}
 		if (this.lastSent > Date.now() + 1.8e6) {
 			if (!this.timeout) {
 				this.setStateChanged("timeout", true, true);
@@ -340,12 +356,12 @@ class Cmicoe extends utils.Adapter {
 
 		this.sock.send(buffer, this.config.cmiPort, this.config.cmiIP, (err) => {
 			if (err != null) {
-				this.log.error("error sending: " + err);
+				this.log.error(`error sending: ${err}`);
 			}
 		});
 	}
 
-	private async sendState(output: Output, id: string, state: ioBroker.State): Promise<void> {
+	private sendState(output: Output, id: string, state: ioBroker.State): void {
 		if (state.val == null) {
 			this.log.warn(`cannot send null value (${id})`);
 			return;
@@ -361,19 +377,21 @@ class Cmicoe extends utils.Adapter {
 					: 0,
 		);
 		if (success) {
-			this.setState(id, state.val, success);
+			void this.setState(id, state.val, success);
 		}
 	}
 
 	private coeReceived(msg: Buffer, rinfo: socket.RemoteInfo): void {
 		this.lastSent = Date.now();
 		this.log.debug(`received ${msg.toString("hex")} from ${rinfo.address}`);
-		this.handlePacket(msg);
+		void this.handlePacket(msg);
 	}
 
 	private onUnload(callback: () => void): void {
 		try {
-			if (this.sendInterval) this.clearInterval(this.sendInterval);
+			if (this.sendInterval) {
+				this.clearInterval(this.sendInterval);
+			}
 			this.sock.close();
 			this.unsubscribeStates("*");
 
@@ -393,9 +411,13 @@ class Cmicoe extends utils.Adapter {
 
 	private onStateChange(id: string, state: ioBroker.State | null | undefined): void {
 		if (state) {
-			if (state.ack) return;
+			if (state.ack) {
+				return;
+			}
 			const output = this.outputFromId(id);
-			if (output == null) return;
+			if (output == null) {
+				return;
+			}
 
 			this.sendState(output, id, state);
 		}
@@ -495,7 +517,7 @@ class Cmicoe extends utils.Adapter {
 			}
 
 			const id = input.nodePath!;
-			this.setState(
+			await this.setState(
 				id,
 				digital ? (data == 1 ? true : false) : data / 10 ** this.dataTypes[input.unit].decimal,
 				true,
@@ -508,7 +530,9 @@ class Cmicoe extends utils.Adapter {
 	}
 
 	private send(nodeID: number, outID: number, dataType: number, data: number): boolean {
-		if (this.cmiIP == "") return false;
+		if (this.cmiIP == "") {
+			return false;
+		}
 		if (nodeID > 255 || nodeID < 0) {
 			this.log.warn(`NodeID has to be between 0 and 255 (got ${nodeID})!`);
 			return false;
