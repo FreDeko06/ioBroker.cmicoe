@@ -57,7 +57,7 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.1.2 (2025-09-23)
 * fixed delete unused states
 
 ### 1.1.1 (2025-09-23)

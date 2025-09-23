@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "news": {
+      "1.1.2": {
+        "en": "fixed delete unused states",
+        "de": "ungenutzte zustände löschen",
+        "ru": "фиксированное удаление неиспользуемых состояний",
+        "pt": "apagar estados não utilizados",
+        "nl": "vaste niet-gebruikte staten verwijderen",
+        "fr": "supprimer les états inutilisés",
+        "it": "stati non utilizzati",
+        "es": "eliminar los estados no utilizados",
+        "pl": "stałe usunięcie niewykorzystanych stanów",
+        "uk": "виправлено видалення невикористаних станів",
+        "zh-cn": "固定删除未使用状态"
+      },
       "1.1.1": {
         "en": "added logo\nupgrade to node 20\nupdated dependencies",
         "de": "hinzufügen von logo\nupgrade auf knoten 20\naktualisierte abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "stały stopień, symbol miernika sześciennego",
         "uk": "фіксована ступінь, символ кубометра",
         "zh-cn": "固定度, 立方米符号"
-      },
-      "1.0.1": {
-        "en": "fixed adapter crash on first start",
-        "de": "fester adapterabsturz beim ersten start",
-        "ru": "фиксированный сбой адаптера при первом запуске",
-        "pt": "falha fixa do adaptador na primeira partida",
-        "nl": "vaste adapter crash bij eerste start",
-        "fr": "panne d'adaptateur fixe au premier démarrage",
-        "it": "crash dell'adattatore fisso sul primo avvio",
-        "es": "choque de adaptador fijo en el primer comienzo",
-        "pl": "stałe zderzenie adaptera przy pierwszym starcie",
-        "uk": "виправлений аварійний перехід на перший старт",
-        "zh-cn": "启动时固定适配器崩溃"
       }
     },
     "titleLang": {
