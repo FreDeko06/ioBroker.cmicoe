@@ -301,15 +301,6 @@ class Cmicoe extends utils.Adapter {
       this.setState(id, state.val, success);
     }
   }
-  async sendOutput(output) {
-    const id = `out.node${output.node}.${output.analog ? "analog" : "digital"}${output.output}`;
-    const state = await this.getStateAsync(id);
-    if (!state) {
-      this.log.warn(`state for output ${id} does not exist. Please restart adapter`);
-      return;
-    }
-    await this.sendState(output, id, state);
-  }
   coeReceived(msg, rinfo) {
     this.lastSent = Date.now();
     this.log.debug(`received ${msg.toString("hex")} from ${rinfo.address}`);

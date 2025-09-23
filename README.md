@@ -57,7 +57,7 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.1.1 (2025-09-23)
 * added logo
 * upgrade to node 20
 * updated dependencies
