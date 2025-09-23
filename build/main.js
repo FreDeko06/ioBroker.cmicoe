@@ -162,22 +162,38 @@ class Cmicoe extends utils.Adapter {
     this.sock.bind(this.config.port, this.config.bind);
   }
   async delUnusedNodes() {
-    const states = await this.getStatesAsync("out.*");
-    for (const s in states) {
-      const output = this.outputFromId(s);
-      if (output == null) {
-        this.log.warn(`state ${s} is no longer used. Deleting...`);
-        await this.delObjectAsync(s);
-        continue;
+    const objs = await this.getAdapterObjectsAsync();
+    for (const id in objs) {
+      if (id.endsWith("info.connection")) continue;
+      const obj = objs[id];
+      if (id.startsWith("cmicoe." + this.instance + ".in") && obj.type == "state") {
+        const output = this.inputFromId(id);
+        if (output == null) {
+          this.log.warn(`state ${id} is no longer used. Deleting...`);
+          await this.delObjectAsync(id);
+          continue;
+        }
       }
-    }
-    const inputStates = await this.getStatesAsync("in.*");
-    for (const s in inputStates) {
-      const input = this.inputFromId(s);
-      if (input == null) {
-        this.log.warn(`state ${s} is no longer used. Deleting...`);
-        await this.delObjectAsync(s);
-        continue;
+      if (id.startsWith("cmicoe." + this.instance + ".out") && obj.type == "state") {
+        const output = this.outputFromId(id);
+        if (output == null) {
+          this.log.warn(`state ${id} is no longer used. Deleting...`);
+          await this.delObjectAsync(id);
+          continue;
+        }
+      }
+      if (obj.type == "channel") {
+        if (obj.common.name == void 0 || !obj.common.name.toString().startsWith("Node")) continue;
+        const node = Number(obj.common.name.toString().substring("Node ".length));
+        if (isNaN(node)) {
+          continue;
+        }
+        if (id.startsWith("cmicoe." + this.instance + ".in.") && !this.inputs.some((out) => out.node == node)) {
+          await this.delObjectAsync(id);
+        }
+        if (id.startsWith("cmicoe." + this.instance + ".out.") && !this.outputs.some((out) => out.node == node)) {
+          await this.delObjectAsync(id);
+        }
       }
     }
   }

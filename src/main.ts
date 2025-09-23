@@ -176,23 +176,46 @@ class Cmicoe extends utils.Adapter {
 	}
 
 	private async delUnusedNodes(): Promise<void> {
-		const states = await this.getStatesAsync("out.*");
-		for (const s in states) {
-			const output: Output | null = this.outputFromId(s);
-			if (output == null) {
-				this.log.warn(`state ${s} is no longer used. Deleting...`);
-				await this.delObjectAsync(s);
-				continue;
+		const objs = await this.getAdapterObjectsAsync();
+		for (const id in objs) {
+			if (id.endsWith("info.connection")) continue;
+			const obj = objs[id];
+			if (id.startsWith("cmicoe." + this.instance + ".in") && obj.type == "state") {
+				const output: Output | null = this.inputFromId(id);
+				if (output == null) {
+					this.log.warn(`state ${id} is no longer used. Deleting...`);
+					await this.delObjectAsync(id);
+					continue;
+				}
 			}
-		}
 
-		const inputStates = await this.getStatesAsync("in.*");
-		for (const s in inputStates) {
-			const input: Output | null = this.inputFromId(s);
-			if (input == null) {
-				this.log.warn(`state ${s} is no longer used. Deleting...`);
-				await this.delObjectAsync(s);
-				continue;
+			if (id.startsWith("cmicoe." + this.instance + ".out") && obj.type == "state") {
+				const output: Output | null = this.outputFromId(id);
+				if (output == null) {
+					this.log.warn(`state ${id} is no longer used. Deleting...`);
+					await this.delObjectAsync(id);
+					continue;
+				}
+			}
+
+			if (obj.type == "channel") {
+				if (obj.common.name == undefined || !obj.common.name.toString().startsWith("Node")) continue;
+				const node = Number(obj.common.name.toString().substring("Node ".length));
+				if (isNaN(node)) {
+					continue;
+				}
+				if (
+					id.startsWith("cmicoe." + this.instance + ".in.") &&
+					!this.inputs.some((out: Output) => out.node == node)
+				) {
+					await this.delObjectAsync(id);
+				}
+				if (
+					id.startsWith("cmicoe." + this.instance + ".out.") &&
+					!this.outputs.some((out: Output) => out.node == node)
+				) {
+					await this.delObjectAsync(id);
+				}
 			}
 		}
 	}
