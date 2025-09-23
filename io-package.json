@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "news": {
+      "1.1.3": {
+        "en": "used @iobroker/eslint\nchanged .vscode schema\nupdated adapter-core dependency",
+        "de": "verwendet @iobroker/eslint\n.vscode schema geändert\naktualisierte adapter-kernabhängigkeit",
+        "ru": "используется @iobroker/eslint\nизменить схему .vscode\nобновленная адаптерная зависимость",
+        "pt": "usado @iobroker/eslint\nalterado o esquema .vscode\ndependência do núcleo do adaptador atualizado",
+        "nl": "gebruikte @iobroker/eslint\nveranderd .vscode schema\nbijgewerkte adapter-core afhankelijkheid",
+        "fr": "utilisé @iobroker/essence\nschéma .vscode modifié\nmise à jour de la dépendance adaptateur-core",
+        "it": "usato @iobroker/eslint\ncambiato schema .vscode\ndipendenza dell'adattatore-core",
+        "es": "utilizado @iobroker/eslint\ncambio .vscode schema\ndependencia actualizada del adaptador-core",
+        "pl": "used @ iobroker / eslint\nzmieniony schemat .vscode\nzaktualizowana zależność zasadnicza adaptera",
+        "uk": "@iobroker/eslint\nзмінено .vscode schema\nоновлена залежність адаптера",
+        "zh-cn": "使用@iobroduc/slint(英语:\n更改.vscode 计划\n更新适配器核心依赖性"
+      },
       "1.1.2": {
         "en": "fixed delete unused states",
         "de": "ungenutzte zustände löschen",
@@ -80,19 +93,6 @@
         "pl": "dodawane czynniki do ustawień wejść / wyjść\naktualizacja README",
         "uk": "додані фактори введення/вилучення параметрів\nоновлення README",
         "zh-cn": "投入/产出设置中增加的因素\n更新读取器"
-      },
-      "1.0.2": {
-        "en": "fixed degree, cubic meter symbol",
-        "de": "fester grad, kubikmetersymbol",
-        "ru": "фиксированная степень, символ кубического метра",
-        "pt": "grau fixo, símbolo de metro cúbico",
-        "nl": "vaste graad, kubieke meter symbool",
-        "fr": "degré fixe, symbole de mètre cube",
-        "it": "grado fisso, simbolo metro cubo",
-        "es": "grado fijo, símbolo del metro cúbico",
-        "pl": "stały stopień, symbol miernika sześciennego",
-        "uk": "фіксована ступінь, символ кубометра",
-        "zh-cn": "固定度, 立方米符号"
       }
     },
     "titleLang": {
