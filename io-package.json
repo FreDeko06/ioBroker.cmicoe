@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.1.3",
+    "version": "1.2.0",
     "news": {
+      "1.2.0": {
+        "en": "used iobroker prettier config\nchanged title\nimproved state roles and attributes\nlimited send interval to 1 day\nfixed deletion of empty node channels\nremoved old node string config",
+        "de": "gebraucht iobroker pre-tier config\nänderung des titels\nverbesserte zustandsrollen und attribute\nbegrenztes sendeintervall bis 1 tag\nfestes löschen leerer knotenkanäle\nalte knoten string config",
+        "ru": "используемый iobroker prettier config\nизменить название\nулучшение государственных ролей и атрибутов\nограниченный интервал отправки до 1 дня\nфиксированное удаление каналов пустых узлов\nудаленный старый конфигуратор строки узла",
+        "pt": "configuração mais bonita do iobroker usado\nmudou o título\nmelhoria dos papéis e atributos do estado\nintervalo de envio limitado para 1 dia\neliminação fixa de canais de nó vazios\nconfiguração da string de nó antiga removida",
+        "nl": "gebruikte iobroker mooiere configuratie\nveranderde titel\nverbeterde staat rollen en kenmerken\nbeperkt verzendinterval tot 1 dag\nvaste verwijdering van lege knooppuntkanalen\nverwijderd oude node string config",
+        "fr": "config iobroker beautier utilisé\nchangement de titre\namélioration des rôles et attributs de l'état\ndélai d'envoi limité à 1 jour\nsuppression fixe des canaux de nœuds vides\nancienne configuration de chaîne de nœuds supprimé",
+        "it": "usato iobroker prettier config\ntitolo cambiato\nruoli e attributi migliorati dello stato\nintervallo di invio limitato a 1 giorno\ncancellazione fissa dei canali di nodo vuoti\nrimosso vecchio nodo stringa configurazione",
+        "es": "usado iobroker prettier config\ntítulo cambiado\nmejorar las funciones y los atributos estatales\nintervalo de envío limitado a 1 día\neliminación fija de canales de nodos vacíos\nremovido viejo nodo cadena config",
+        "pl": "używane konfigi pretty iobroker\nzmieniony tytuł\nulepszone role i atrybuty państwa\nograniczony czas wysyłania do 1 dnia\nstałe usuwanie pustych kanałów węzłowych\nusunięty stary ciąg węzłów",
+        "uk": "iobroker prettier config\nзаголовок\nполіпшення ролі держави і атрибутів\nобмежений інтервал відправлення до 1 дня\nфіксоване видалення порожніх каналів вузлів\nвидалити старий рядок вузла",
+        "zh-cn": "使用 io 经纪人更漂亮的配置\n更改标题\n改善国家作用和属性\n将发送间隔限制为 1 天\n固定删除空节点通道\n删除旧节点字符串配置"
+      },
       "1.1.3": {
         "en": "used @iobroker/eslint\nchanged .vscode schema\nupdated adapter-core dependency",
         "de": "verwendet @iobroker/eslint\n.vscode schema geändert\naktualisierte adapter-kernabhängigkeit",
@@ -80,19 +93,6 @@
         "pl": "aktualizacji zależności",
         "uk": "оновлення залежності",
         "zh-cn": "更新依赖关系"
-      },
-      "1.0.3": {
-        "en": "added factors to inputs/outputs settings\nupdate README",
-        "de": "zusätzliche faktoren zu eingaben / ausgabeeinstellungen\naktualisierung README",
-        "ru": "дополнительные факторы для настроек ввода/вывода\nобновление Readme",
-        "pt": "fatores adicionados às configurações de entradas/saídas\natualizar README",
-        "nl": "toegevoegde factoren aan instellingen voor input/outputs\nrEADME bijwerken",
-        "fr": "ajout de facteurs aux paramètres d'entrées/sorties\nmettre à jour README",
-        "it": "fattori aggiunti alle impostazioni di input/output\naggiornamento README",
-        "es": "factores añadidos a la configuración de entradas/salidas\nactualización README",
-        "pl": "dodawane czynniki do ustawień wejść / wyjść\naktualizacja README",
-        "uk": "додані фактори введення/вилучення параметрів\nоновлення README",
-        "zh-cn": "投入/产出设置中增加的因素\n更新读取器"
       }
     },
     "titleLang": {

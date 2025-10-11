@@ -57,7 +57,7 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.2.0 (2025-10-11)
 * used iobroker prettier config
 * changed title
 * improved state roles and attributes
