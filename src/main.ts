@@ -48,11 +48,6 @@ class Cmicoe extends utils.Adapter {
     private async onReady(): Promise<void> {
         await this.setState('info.connection', false, true);
 
-        if (this.config.nodes != '' && (this.config.outputs == undefined || this.config.outputs.length == 0)) {
-            this.log.info('Converting old nodes string to new object...');
-            this.convertNodeString();
-        }
-
         this.setupIOs();
 
         await this.updateStates();
@@ -108,50 +103,6 @@ class Cmicoe extends utils.Adapter {
             }
             this.inputs.push(i);
         });
-    }
-
-    private convertNodeString(): void {
-        this.config.outputs = [];
-        try {
-            const outputs = this.config.nodes.split(',');
-            for (let idx = 0; idx < outputs.length; idx++) {
-                const output = outputs[idx];
-                if (output == '') {
-                    continue;
-                }
-                const regex = /^(\d+)\/(\w)(\d+)$/;
-                const matches: RegExpMatchArray | null = output.match(regex);
-                if (matches == null) {
-                    this.log.warn(`output configuration "${output}" has wrong format (no match)!`);
-                    continue;
-                }
-                let digital = false;
-                if (matches[2].toLowerCase() == 'd') {
-                    digital = true;
-                } else if (matches[2].toLowerCase() == 'a') {
-                    digital = false;
-                } else {
-                    this.log.warn(`configurated node ${output} has wrong format!`);
-                    continue;
-                }
-                const out: Output = {
-                    node: parseInt(matches[1]),
-                    output: parseInt(matches[3]),
-                    analog: !digital,
-                    desc: '',
-                    name: '',
-                    unit: 0,
-                };
-                this.config.outputs.push(out);
-            }
-            this.log.info('Converting successful');
-        } catch {
-            this.log.error('Nodes setting has the wrong format! Converting failed.');
-        }
-        this.config.nodes = '';
-        this.updateConfig(this.config)
-            .then()
-            .catch(e => this.log.error(`Failed to convert node string: ${e}`));
     }
 
     private async updateStates(): Promise<void> {
@@ -267,7 +218,7 @@ class Cmicoe extends utils.Adapter {
                 common: {
                     type: output.analog ? 'number' : 'boolean',
                     read: true,
-                    write: type == "out",
+                    write: type == 'out',
                     role: this.getRole(output, type),
                     name: output.desc,
                     def: output.analog ? 0 : false,

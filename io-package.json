@@ -160,7 +160,6 @@
     ]
   },
   "native": {
-    "nodes": "",
     "cmiIP": "",
     "cmiPort": 5442,
     "sendInterval": 60,

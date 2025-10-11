@@ -4,7 +4,6 @@
 declare global {
 	namespace ioBroker {
 		interface AdapterConfig {
-			nodes: string;
 			cmiIP: string;
 			cmiPort: number;
 			sendInterval: number;
