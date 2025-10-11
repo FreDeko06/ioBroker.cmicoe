@@ -3,9 +3,8 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: monthly
-      time: "04:00"
-      timezone: Europe/Berlin
+      interval: cron
+      cronjob: "15 4 12 * *"
     open-pull-requests-limit: 5
     assignees:
       - FreDeko06
@@ -14,9 +13,8 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: monthly
-      time: "04:00"
-      timezone: Europe/Berlin
+      interval: cron
+      cronjob: "15 4 12 * *"
     open-pull-requests-limit: 5
     assignees:
       - FreDeko06

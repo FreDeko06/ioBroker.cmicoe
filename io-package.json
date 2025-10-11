@@ -96,17 +96,17 @@
       }
     },
     "titleLang": {
-      "en": "Can over Ethernet",
-      "de": "Can over Ethernet",
-      "ru": "Can over Ethernet",
-      "pt": "Can over Ethernet",
-      "nl": "Can over Ethernet",
-      "fr": "Can over Ethernet",
-      "it": "Can over Ethernet",
-      "es": "Can over Ethernet",
-      "pl": "Can over Ethernet",
-      "uk": "Can over Ethernet",
-      "zh-cn": "Can over Ethernet"
+      "en": "Can over Ethernet for CMI",
+      "de": "Can over Ethernet für CMI",
+      "ru": "Can over Ethernet для CMI",
+      "pt": "Can over Ethernet para CMI",
+      "nl": "Kan over Ethernet voor CMI",
+      "fr": "Peut via Ethernet pour CMI",
+      "it": "Può su Ethernet per CMI",
+      "es": "Por via Ethernet pa CMI",
+      "pl": "Puede a través de Ethernet para CMI",
+      "uk": "Can over Ethernet for CMI",
+      "zh-cn": "以太网上可以实现 CMI"
     },
     "desc": {
       "en": "Adapter to communicate with the CMI by Technische Alternative via CoE",

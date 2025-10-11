@@ -57,6 +57,13 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
+### **WORK IN PROGRESS**
+* used iobroker prettier config
+* changed title
+* improved state roles and attributes
+* limited send interval to 1 day
+* fixed deletion of empty node channels
+
 ### 1.1.3 (2025-09-23)
 * used @iobroker/eslint
 * changed .vscode schema

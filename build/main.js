@@ -22,14 +22,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var utils = __toESM(require("@iobroker/adapter-core"));
-var import_dgram = __toESM(require("dgram"));
+var import_node_dgram = __toESM(require("node:dgram"));
 class Cmicoe extends utils.Adapter {
   constructor(options = {}) {
     super({
       ...options,
       name: "cmicoe"
     });
-    this.sock = import_dgram.default.createSocket("udp4");
+    this.sock = import_node_dgram.default.createSocket("udp4");
     this.on("ready", this.onReady.bind(this));
     this.on("stateChange", this.onStateChange.bind(this));
     this.on("unload", this.onUnload.bind(this));
@@ -61,9 +61,9 @@ class Cmicoe extends utils.Adapter {
       this.initSocket();
     }
     let interval = this.config.sendInterval * 1e3;
-    if (interval <= 0 || interval > 4294967295) {
+    if (interval <= 0 || interval > 864e5) {
       this.log.warn(
-        `interval must be in range 1 <= interval <= ${4294967295} (got ${interval}). Using default 60000 ms`
+        `interval must be in range 1 <= interval <= 86400000 (got ${interval}). Using default 60000 ms`
       );
       interval = 6e4;
     }
@@ -83,7 +83,7 @@ class Cmicoe extends utils.Adapter {
     }
     this.config.outputs.forEach((o) => {
       o.nodePath = `out.node${o.node}.${o.analog ? "a" : "d"}${o.output}_${o.name}`;
-      o.name = o.name.replaceAll(this.FORBIDDEN_CHARS, "_");
+      o.nodePath = o.nodePath.replaceAll(/[^a-zA-Z0-9_-]/g, "_");
       if (!(o.unit in this.dataTypes)) {
         o.unit = 0;
       }
@@ -91,7 +91,7 @@ class Cmicoe extends utils.Adapter {
     });
     this.config.inputs.forEach((i) => {
       i.nodePath = `in.node${i.node}.${i.analog ? "a" : "d"}${i.output}_${i.name}`;
-      i.name = i.name.replaceAll(this.FORBIDDEN_CHARS, "_");
+      i.nodePath = i.nodePath.replaceAll(/[^a-zA-Z0-9_-]/g, "_");
       if (!(i.unit in this.dataTypes)) {
         i.unit = 0;
       }
@@ -191,10 +191,10 @@ class Cmicoe extends utils.Adapter {
         }
       }
       if (obj.type == "channel") {
-        if (obj.common.name == void 0 || !JSON.stringify(obj.common.name).startsWith("Node")) {
+        if (obj.common.name == void 0 || !JSON.stringify(obj.common.name).startsWith('"Node')) {
           continue;
         }
-        const node = Number(JSON.stringify(obj.common.name).substring("Node ".length));
+        const node = Number(JSON.stringify(obj.common.name).replaceAll('"', "").substring("Node ".length));
         if (isNaN(node)) {
           continue;
         }
@@ -206,6 +206,18 @@ class Cmicoe extends utils.Adapter {
         }
       }
     }
+  }
+  getRole(io, type) {
+    if (type == "out") {
+      if (io.analog) {
+        return "level";
+      }
+      return "switch";
+    }
+    if (io.analog) {
+      return "value";
+    }
+    return "indicator";
   }
   async createStates(ios, type) {
     for (let idx = 0; idx < ios.length; idx++) {
@@ -226,8 +238,8 @@ class Cmicoe extends utils.Adapter {
         common: {
           type: output.analog ? "number" : "boolean",
           read: true,
-          write: true,
-          role: "value",
+          write: type == "out",
+          role: this.getRole(output, type),
           name: output.desc,
           def: output.analog ? 0 : false,
           unit: this.dataTypes[output.unit].symbol
@@ -269,9 +281,7 @@ class Cmicoe extends utils.Adapter {
       const allOutputs = outputsLeft.filter((o) => o.node == output.node && o.analog == output.analog);
       const outputsToSend = allOutputs.slice(0, Math.min(4, allOutputs.length));
       outputsLeft = outputsLeft.filter((out) => {
-        return !outputsToSend.some(
-          (o) => o.analog == out.analog && o.node == out.node && o.output == out.output
-        );
+        return !outputsToSend.some((o) => o.analog == out.analog && o.node == out.node && o.output == out.output);
       });
       const values = await Promise.all(
         outputsToSend.map(async (out) => {

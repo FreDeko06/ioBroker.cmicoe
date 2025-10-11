@@ -3,7 +3,7 @@
  */
 
 import * as utils from '@iobroker/adapter-core';
-import socket from 'dgram';
+import socket from 'node:dgram';
 
 type Output = {
     name: string;
@@ -68,9 +68,9 @@ class Cmicoe extends utils.Adapter {
             this.initSocket();
         }
         let interval = this.config.sendInterval * 1000;
-        if (interval <= 0 || interval > 0xffffffff) {
+        if (interval <= 0 || interval > 86400000) {
             this.log.warn(
-                `interval must be in range 1 <= interval <= ${0xffffffff} (got ${interval}). Using default 60000 ms`,
+                `interval must be in range 1 <= interval <= 86400000 (got ${interval}). Using default 60000 ms`,
             );
             interval = 60000;
         }
@@ -94,7 +94,7 @@ class Cmicoe extends utils.Adapter {
         }
         this.config.outputs.forEach((o: Output) => {
             o.nodePath = `out.node${o.node}.${o.analog ? 'a' : 'd'}${o.output}_${o.name}`;
-            o.name = o.name.replaceAll(this.FORBIDDEN_CHARS, '_');
+            o.nodePath = o.nodePath.replaceAll(/[^a-zA-Z0-9_-]/g, '_');
             if (!(o.unit in this.dataTypes)) {
                 o.unit = 0;
             }
@@ -102,7 +102,7 @@ class Cmicoe extends utils.Adapter {
         });
         this.config.inputs.forEach(i => {
             i.nodePath = `in.node${i.node}.${i.analog ? 'a' : 'd'}${i.output}_${i.name}`;
-            i.name = i.name.replaceAll(this.FORBIDDEN_CHARS, '_');
+            i.nodePath = i.nodePath.replaceAll(/[^a-zA-Z0-9_-]/g, '_');
             if (!(i.unit in this.dataTypes)) {
                 i.unit = 0;
             }
@@ -211,10 +211,10 @@ class Cmicoe extends utils.Adapter {
             }
 
             if (obj.type == 'channel') {
-                if (obj.common.name == undefined || !JSON.stringify(obj.common.name).startsWith('Node')) {
+                if (obj.common.name == undefined || !JSON.stringify(obj.common.name).startsWith('"Node')) {
                     continue;
                 }
-                const node = Number(JSON.stringify(obj.common.name).substring('Node '.length));
+                const node = Number(JSON.stringify(obj.common.name).replaceAll('"', '').substring('Node '.length));
                 if (isNaN(node)) {
                     continue;
                 }
@@ -232,6 +232,19 @@ class Cmicoe extends utils.Adapter {
                 }
             }
         }
+    }
+
+    private getRole(io: Output, type: string): string {
+        if (type == 'out') {
+            if (io.analog) {
+                return 'level';
+            }
+            return 'switch';
+        }
+        if (io.analog) {
+            return 'value';
+        }
+        return 'indicator';
     }
 
     private async createStates(ios: Output[], type: string): Promise<void> {
@@ -254,8 +267,8 @@ class Cmicoe extends utils.Adapter {
                 common: {
                     type: output.analog ? 'number' : 'boolean',
                     read: true,
-                    write: true,
-                    role: 'value',
+                    write: type == "out",
+                    role: this.getRole(output, type),
                     name: output.desc,
                     def: output.analog ? 0 : false,
                     unit: this.dataTypes[output.unit].symbol,
