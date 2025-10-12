@@ -57,7 +57,7 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.2.1 (2025-10-12)
 * Bump @types/node to 24.7.2
 * Bump @alcalzone/release-script-plugin-license to 4.0.0
 * Bump rimraf to 6.0.1

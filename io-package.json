@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "news": {
+      "1.2.1": {
+        "en": "Bump @types/node to 24.7.2\nBump @alcalzone/release-script-plugin-license to 4.0.0\nBump rimraf to 6.0.1\nupdated other dependencies\nfixed forbidden chars in ids",
+        "de": "Bump @types/node auf 24.7.2\nBump @alcalzone/Release-script-plugin-license bis 4.0.0\nStoßfänger bis 6.0.1\nandere abhängigkeiten aktualisiert\nfeste verbotene wagen in ids",
+        "ru": "Bump @types/node to 24.7.2\nBump @alcalzone/release-script-plugin-license to 4.0.0\nBump rimraf 6.0.1\nобновление других зависимостей\nзапрещенные запреты в ид",
+        "pt": "Bump @types/node até 24.7.2\nBump @alcalzone/release-script-plugin-licença para 4.0.0\nBump rimraf a 6.0.1\natualizar outras dependências\ncaracteres proibidos fixos em ids",
+        "nl": "Bump @types/node naar 24.7.2\nBump @alcalzone/release-script-plugin-license naar 4.0.0\nBump rimraf tot 6,0.1\nbijgewerkte andere afhankelijkheden\nvaste verboden tekens in id's",
+        "fr": "Bump @types/noeud à 24.7.2\nBump @alcalzone/release-script-plugin-license à 4.0.0\nBump jrraf à 6.0.1\nmise à jour des autres dépendances\nchars interdits fixes en ids",
+        "it": "Bump @types/nodo a 24.7.2\nBump @alcalzone/release-script-plugin-license a 4.0.0\nParaurti a 6.0.1\naggiornato altre dipendenze\ncarbone fisso vietato in ids",
+        "es": "Bomba @tipos/nodo a 24.7.2\nBomba @alcalzone/release-script-plugin-license a 4.0.0\nBump rimraf a 6.0.1\nactualización de otras dependencias\ncarbones fijos prohibidos en ids",
+        "pl": "Bump @ types / node do 24.7.2\nBump @ alcalzone / release- script- plugin- licence do 4.0.0\nRimraf do 6.0.1\nzaktualizowane inne zależności\nstałe niedozwolone znaki w idach",
+        "uk": "Bump @types/node до 24.7.2\nBump @alcalzone / вивільнення-script-plugin-license до 4.0.0\nBump rimraf до 6.0.1\nоновлені інші залежності\nфіксовані заборонені chars в ids",
+        "zh-cn": "弹跳@类型/节点为24.7.2\n跳跃@alcalzone/release-script-plugin-license 到4.0.0\n圆柱形至6.0.1\n更新的其他依赖关系\n编号中的固定禁用字符"
+      },
       "1.2.0": {
         "en": "used iobroker prettier config\nchanged title\nimproved state roles and attributes\nlimited send interval to 1 day\nfixed deletion of empty node channels\nremoved old node string config",
         "de": "gebraucht iobroker pre-tier config\nänderung des titels\nverbesserte zustandsrollen und attribute\nbegrenztes sendeintervall bis 1 tag\nfestes löschen leerer knotenkanäle\nalte knoten string config",
@@ -80,19 +93,6 @@
         "pl": "układ stały",
         "uk": "фіксований макет",
         "zh-cn": "固定布局"
-      },
-      "1.0.4": {
-        "en": "update dependencies",
-        "de": "aktualisierung der abhängigkeiten",
-        "ru": "обновление зависимостей",
-        "pt": "atualizar dependências",
-        "nl": "afhankelijkheden bijwerken",
-        "fr": "mettre à jour les dépendances",
-        "it": "aggiornamento dipendenze",
-        "es": "dependencias de actualización",
-        "pl": "aktualizacji zależności",
-        "uk": "оновлення залежності",
-        "zh-cn": "更新依赖关系"
       }
     },
     "titleLang": {
