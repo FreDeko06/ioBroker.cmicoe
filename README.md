@@ -57,6 +57,13 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
+### **WORK IN PROGRESS**
+* Bump @types/node to 24.7.2
+* Bump @alcalzone/release-script-plugin-license to 4.0.0
+* Bump rimraf to 6.0.1
+* updated other dependencies
+* fixed forbidden chars in ids
+
 ### 1.2.0 (2025-10-11)
 * used iobroker prettier config
 * changed title

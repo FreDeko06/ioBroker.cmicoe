@@ -78,16 +78,20 @@ class Cmicoe extends utils.Adapter {
       this.config.inputs = [];
     }
     this.config.outputs.forEach((o) => {
+      o.name = o.name.replaceAll(/[^a-zA-Z0-9_-]/g, "_");
+      o.node = Number(String(o.node).replaceAll(/[^a-zA-Z0-9_-]/g, ""));
+      o.output = Number(String(o.output).replaceAll(/[^a-zA-Z0-9_-]/g, ""));
       o.nodePath = `out.node${o.node}.${o.analog ? "a" : "d"}${o.output}_${o.name}`;
-      o.nodePath = o.nodePath.replaceAll(/[^a-zA-Z0-9_-]/g, "_");
       if (!(o.unit in this.dataTypes)) {
         o.unit = 0;
       }
       this.outputs.push(o);
     });
     this.config.inputs.forEach((i) => {
+      i.name = i.name.replaceAll(/[^a-zA-Z0-9_-]/g, "_");
+      i.node = Number(String(i.node).replaceAll(/[^a-zA-Z0-9_-]/g, ""));
+      i.output = Number(String(i.output).replaceAll(/[^a-zA-Z0-9_-]/g, ""));
       i.nodePath = `in.node${i.node}.${i.analog ? "a" : "d"}${i.output}_${i.name}`;
-      i.nodePath = i.nodePath.replaceAll(/[^a-zA-Z0-9_-]/g, "_");
       if (!(i.unit in this.dataTypes)) {
         i.unit = 0;
       }
@@ -177,7 +181,7 @@ class Cmicoe extends utils.Adapter {
   async createStates(ios, type) {
     for (let idx = 0; idx < ios.length; idx++) {
       const output = ios[idx];
-      const id = `${type}.node${output.node}.${output.analog ? "a" : "d"}${output.output}_${output.name}`;
+      const id = output.nodePath;
       const nodeChannel = `${type}.node${output.node}`;
       const nodeObj = {
         type: "channel",
