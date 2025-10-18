@@ -75,6 +75,8 @@
 			"items": {
 				"inputs": {
 					"type": "table",
+					"import": true,
+					"export": true,
 					"xs": 12,
 					"sm": 12,
 					"md": 12,
@@ -210,6 +212,8 @@
 			"items": {
 				"outputs": {
 					"type": "table",
+					"import": true,
+					"export": true,
 					"xs": 12,
 					"sm": 12,
 					"md": 12,
