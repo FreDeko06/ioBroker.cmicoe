@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "news": {
+      "1.2.2": {
+        "en": "added export/import to config tables",
+        "de": "export/import zu config tabellen hinzugefügt",
+        "ru": "добавление экспорта/импорта в таблицы конфигурации",
+        "pt": "adicionado exportação/importação para tabelas de configuração",
+        "nl": "export/import toegevoegd aan configuratietabellen",
+        "fr": "ajouté export/import aux tableaux de configuration",
+        "it": "aggiunto export/import alle tabelle di configurazione",
+        "es": "añadida exportación/importación a cuadros de configuración",
+        "pl": "dodany eksport / import do tabel konfiguracyjnych",
+        "uk": "додано експорт/імпорт на налаштування таблиць",
+        "zh-cn": "在配置表格中添加导出/导入"
+      },
       "1.2.1": {
         "en": "Bump @types/node to 24.7.2\nBump @alcalzone/release-script-plugin-license to 4.0.0\nBump rimraf to 6.0.1\nupdated other dependencies\nfixed forbidden chars in ids",
         "de": "Bump @types/node auf 24.7.2\nBump @alcalzone/Release-script-plugin-license bis 4.0.0\nStoßfänger bis 6.0.1\nandere abhängigkeiten aktualisiert\nfeste verbotene wagen in ids",
@@ -80,19 +93,6 @@
         "pl": "dodaje się jednostki od https: / / fci.ta.co.at / docu / developer\nusunięte czynniki, ułamki dziesiętne są obliczane automatycznie z jednostki\nstałe problemy z liczbami ujemnymi",
         "uk": "додано блоки з https://fci.ta.co.at/docu/developer\nвидалені фактори, комбінезон комп’ютерні автоматично від блоку\nвиправлені проблеми з негативними числами",
         "zh-cn": "从https://fci.ta.co.at/docu/developer中添加的单位\n删除的系数, 十进制从单位自动计算\n负数的固定问题"
-      },
-      "1.0.5": {
-        "en": "fixed layout",
-        "de": "anlage",
-        "ru": "фиксированный макет",
-        "pt": "disposição fixa",
-        "nl": "vaste indeling",
-        "fr": "plan fixe",
-        "it": "layout fisso",
-        "es": "diseño fijo",
-        "pl": "układ stały",
-        "uk": "фіксований макет",
-        "zh-cn": "固定布局"
       }
     },
     "titleLang": {
