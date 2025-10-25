@@ -57,7 +57,7 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.2.3 (2025-10-25)
 * migrate to npm trusted publishing
 
 ### 1.2.2 (2025-10-18)

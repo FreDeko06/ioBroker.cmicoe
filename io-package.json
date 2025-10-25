@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "news": {
+      "1.2.3": {
+        "en": "migrate to npm trusted publishing",
+        "de": "migrate to npm trusted publishing",
+        "ru": "перейти в npm trusted publishing",
+        "pt": "migrar para a publicação confiável do npm",
+        "nl": "migreren naar npm vertrouwde publicatie",
+        "fr": "migrer vers npm publication de confiance",
+        "it": "migrare a npm pubblicazione di fiducia",
+        "es": "migrar a npm publicación de confianza",
+        "pl": "migracja do zaufanego wydawnictwa npm",
+        "uk": "migrate to npm довірена публікація",
+        "zh-cn": "迁移到 npm 信任的出版"
+      },
       "1.2.2": {
         "en": "added export/import to config tables",
         "de": "export/import zu config tabellen hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "dodane logo\nupgrade do węzła 20\nzaktualizowane zależności",
         "uk": "додано логотип\nоновлення до вузла 20\nоновлені залежності",
         "zh-cn": "添加标志\n升级到节点 20\n更新的依赖关系"
-      },
-      "1.1.0": {
-        "en": "added units from https://fci.ta.co.at/docu/developer\nremoved factors, decimals are computed automatically from the unit\nfixed problems with negative numbers",
-        "de": "zusätzliche einheiten von https://fci.ta.co.at/docu/developer\nentfernte faktoren, dezimals werden automatisch aus der einheit berechnet\nfeste probleme mit negativen zahlen",
-        "ru": "добавлены единицы https://fci.ta.co.at/docu/developer\nудаленные факторы, десятичные числа вычисляются автоматически из единицы\nфиксированные проблемы с отрицательными числами",
-        "pt": "unidades adicionadas de https://fci.ta.co.at/docu/developer\nfatores removidos, decimais são calculados automaticamente da unidade\nproblemas fixos com números negativos",
-        "nl": "de commissie is van mening dat er geen sprake is van staatssteun\nverwijderde factoren, decimalen worden automatisch berekend uit de eenheid\nvaste problemen met negatieve getallen",
-        "fr": "unités ajoutées à partir de https://fci.ta.co.at/docu/developer\nfacteurs supprimés, décimales sont calculées automatiquement à partir de l'unité\nproblèmes fixes avec des nombres négatifs",
-        "it": "unità aggiuntive da https://fci.ta.co.at/docu/developer\nfattori rimossi, i decimali vengono calcolati automaticamente dall'unità\nproblemi fissi con numeri negativi",
-        "es": "unidades añadidas en https://fci.ta.co.at/docu/developer\nfactores eliminados, los decimales se calculan automáticamente desde la unidad\nproblemas fijos con números negativos",
-        "pl": "dodaje się jednostki od https: / / fci.ta.co.at / docu / developer\nusunięte czynniki, ułamki dziesiętne są obliczane automatycznie z jednostki\nstałe problemy z liczbami ujemnymi",
-        "uk": "додано блоки з https://fci.ta.co.at/docu/developer\nвидалені фактори, комбінезон комп’ютерні автоматично від блоку\nвиправлені проблеми з негативними числами",
-        "zh-cn": "从https://fci.ta.co.at/docu/developer中添加的单位\n删除的系数, 十进制从单位自动计算\n负数的固定问题"
       }
     },
     "titleLang": {
