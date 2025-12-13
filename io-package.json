@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "news": {
+      "1.2.4": {
+        "en": "bump @types/node to 25.0.1\nbump @tsconfig/node20 to 20.0.8\nbump glob\nbump actions/checkout to 6\nmore dependency updates",
+        "de": "stoß @types/node bis 25.0.1\nstoß @tsconfig/node20 bis 20.0.8\nstoßfänger\nbump-actions/checkout auf 6\nmehr abhängigkeitsaktualisierung",
+        "ru": "bump @types/node to 25.0.1\nbump @tsconfig/node20 до 20.0.8\nударный шар\nшаг за шагом / checkout to 6\nбольше обновлений зависимостей",
+        "pt": "bump @types/node para 25.0.1\nbump @tsconfig/node20 a 20.0.8\nblob\nações/checkout para 6\nmais atualizações de dependência",
+        "nl": "bump @types/node naar 25.0.1\nbump @tsconfig/node20 tot 20.0.8\nbump glob\nbump acties/controle op 6\nmeer afhankelijkheidsupdates",
+        "fr": "bosse @types/noeud à 25,0.1\nbosse @tsconfig/node20 à 20.0.8\ngobelet de bosse\naction de bosse / vérification à 6\nplus de mises à jour de dépendance",
+        "it": "urto @types/nodo a 25.0.1\nurto @tsconfig/node20 a 20.0.8\nguanto paraurti\nurto azioni/checkout a 6\npiù aggiornamenti di dipendenza",
+        "es": "tope @tipos/nodo a 25.0.1\ntope @tsconfig/node20 a 20.0.8\nglob\nacciones/salida a 6\nmás actualizaciones de dependencia",
+        "pl": "bump @ types / node do 25.0.1\nbump @ tsconfig / node20 do 20.0.8\nbump glob\nbump działania / checkout do 6\nwięcej aktualizacji zależności",
+        "uk": "bump @types/node до 25.0.1\nbump @tsconfig/node20 до 20.0.8\nбампер glob\nbump дії/checkout до 6\nоновлення залежності",
+        "zh-cn": "@ types/ node 到 25. 0.1\n凸起@tsconfig/node20 到 20.0.8\n凸起的阴影\n组合动作/检查到 6\n更多依赖性更新"
+      },
       "1.2.3": {
         "en": "migrate to npm trusted publishing",
         "de": "migrate to npm trusted publishing",
@@ -80,19 +93,6 @@
         "pl": "stałe usunięcie niewykorzystanych stanów",
         "uk": "виправлено видалення невикористаних станів",
         "zh-cn": "固定删除未使用状态"
-      },
-      "1.1.1": {
-        "en": "added logo\nupgrade to node 20\nupdated dependencies",
-        "de": "hinzufügen von logo\nupgrade auf knoten 20\naktualisierte abhängigkeiten",
-        "ru": "добавлен логотип\nобновление до node 20\nобновленные зависимости",
-        "pt": "logótipo adicionado\natualizar para o nó 20\ndependências atualizadas",
-        "nl": "logo toegevoegd\nupgrade naar knooppunt 20\nbijgewerkte afhankelijkheden",
-        "fr": "logo ajouté\nmise à niveau vers le nœud 20\ndépendances actualisées",
-        "it": "logo aggiunto\naggiornamento al nodo 20\ndipendenze aggiornate",
-        "es": "logo añadido\nactualización al nodo 20\ndependencias actualizadas",
-        "pl": "dodane logo\nupgrade do węzła 20\nzaktualizowane zależności",
-        "uk": "додано логотип\nоновлення до вузла 20\nоновлені залежності",
-        "zh-cn": "添加标志\n升级到节点 20\n更新的依赖关系"
       }
     },
     "titleLang": {
