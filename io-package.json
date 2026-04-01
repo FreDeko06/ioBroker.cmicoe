@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.2.4",
+    "version": "1.2.5",
     "news": {
+      "1.2.5": {
+        "en": "update dependencies",
+        "de": "aktualisierung der abhängigkeiten",
+        "ru": "обновление зависимостей",
+        "pt": "atualizar dependências",
+        "nl": "afhankelijkheden bijwerken",
+        "fr": "mettre à jour les dépendances",
+        "it": "aggiornamento dipendenze",
+        "es": "dependencias de actualización",
+        "pl": "aktualizacji zależności",
+        "uk": "оновлення залежності",
+        "zh-cn": "更新依赖关系"
+      },
       "1.2.4": {
         "en": "bump @types/node to 25.0.1\nbump @tsconfig/node20 to 20.0.8\nbump glob\nbump actions/checkout to 6\nmore dependency updates",
         "de": "stoß @types/node bis 25.0.1\nstoß @tsconfig/node20 bis 20.0.8\nstoßfänger\nbump-actions/checkout auf 6\nmehr abhängigkeitsaktualisierung",
@@ -80,19 +93,6 @@
         "pl": "used @ iobroker / eslint\nzmieniony schemat .vscode\nzaktualizowana zależność zasadnicza adaptera",
         "uk": "@iobroker/eslint\nзмінено .vscode schema\nоновлена залежність адаптера",
         "zh-cn": "使用@iobroduc/slint(英语:\n更改.vscode 计划\n更新适配器核心依赖性"
-      },
-      "1.1.2": {
-        "en": "fixed delete unused states",
-        "de": "ungenutzte zustände löschen",
-        "ru": "фиксированное удаление неиспользуемых состояний",
-        "pt": "apagar estados não utilizados",
-        "nl": "vaste niet-gebruikte staten verwijderen",
-        "fr": "supprimer les états inutilisés",
-        "it": "stati non utilizzati",
-        "es": "eliminar los estados no utilizados",
-        "pl": "stałe usunięcie niewykorzystanych stanów",
-        "uk": "виправлено видалення невикористаних станів",
-        "zh-cn": "固定删除未使用状态"
       }
     },
     "titleLang": {

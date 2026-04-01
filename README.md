@@ -57,7 +57,7 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.2.5 (2026-04-01)
 * update dependencies
 
 ### 1.2.4 (2025-12-13)
