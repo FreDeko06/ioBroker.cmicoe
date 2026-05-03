@@ -150,6 +150,8 @@ If checked, the adapter also sends an output once it changes.
 ### 0.1.0 (2025-02-16)
 * (FreDeko) initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 MIT License
 
