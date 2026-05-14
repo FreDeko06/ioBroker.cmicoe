@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "cmicoe",
-    "version": "1.2.5",
+    "version": "1.3.0",
     "news": {
+      "1.3.0": {
+        "en": "update dependencies\nAdapter requires node.js >= 22 now",
+        "de": "aktualisierung der abhängigkeiten\nAdapter benötigt node.js >= 22 jetzt",
+        "ru": "обновление зависимостей\nАдаптер требует node.js >= 22 сейчас",
+        "pt": "atualizar dependências\nAdaptador requer nod.js >= 22 agora",
+        "nl": "afhankelijkheden bijwerken\nVoor de adapter zijn node.js < 22 nu nodig",
+        "fr": "mettre à jour les dépendances\nAdaptateur nécessite node.js >= 22 maintenant",
+        "it": "aggiornamento dipendenze\nAdattatore richiede node.js >= 22 ora",
+        "es": "dependencias de actualización\nAdaptador requiere node.js ю= 22 ahora",
+        "pl": "aktualizacji zależności\nAdapter wymaga node.js > = 22",
+        "uk": "оновлення залежності\nАдаптер вимагає node.js >= 22 тепер",
+        "zh-cn": "更新依赖关系\n适配器需要节点.js 现在22"
+      },
       "1.2.5": {
         "en": "update dependencies",
         "de": "aktualisierung der abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "używane konfigi pretty iobroker\nzmieniony tytuł\nulepszone role i atrybuty państwa\nograniczony czas wysyłania do 1 dnia\nstałe usuwanie pustych kanałów węzłowych\nusunięty stary ciąg węzłów",
         "uk": "iobroker prettier config\nзаголовок\nполіпшення ролі держави і атрибутів\nобмежений інтервал відправлення до 1 дня\nфіксоване видалення порожніх каналів вузлів\nвидалити старий рядок вузла",
         "zh-cn": "使用 io 经纪人更漂亮的配置\n更改标题\n改善国家作用和属性\n将发送间隔限制为 1 天\n固定删除空节点通道\n删除旧节点字符串配置"
-      },
-      "1.1.3": {
-        "en": "used @iobroker/eslint\nchanged .vscode schema\nupdated adapter-core dependency",
-        "de": "verwendet @iobroker/eslint\n.vscode schema geändert\naktualisierte adapter-kernabhängigkeit",
-        "ru": "используется @iobroker/eslint\nизменить схему .vscode\nобновленная адаптерная зависимость",
-        "pt": "usado @iobroker/eslint\nalterado o esquema .vscode\ndependência do núcleo do adaptador atualizado",
-        "nl": "gebruikte @iobroker/eslint\nveranderd .vscode schema\nbijgewerkte adapter-core afhankelijkheid",
-        "fr": "utilisé @iobroker/essence\nschéma .vscode modifié\nmise à jour de la dépendance adaptateur-core",
-        "it": "usato @iobroker/eslint\ncambiato schema .vscode\ndipendenza dell'adattatore-core",
-        "es": "utilizado @iobroker/eslint\ncambio .vscode schema\ndependencia actualizada del adaptador-core",
-        "pl": "used @ iobroker / eslint\nzmieniony schemat .vscode\nzaktualizowana zależność zasadnicza adaptera",
-        "uk": "@iobroker/eslint\nзмінено .vscode schema\nоновлена залежність адаптера",
-        "zh-cn": "使用@iobroduc/slint(英语:\n更改.vscode 计划\n更新适配器核心依赖性"
       }
     },
     "titleLang": {
