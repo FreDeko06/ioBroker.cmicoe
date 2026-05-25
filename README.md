@@ -77,6 +77,8 @@ If checked, the adapter also sends an output once it changes.
 ### 1.2.2 (2025-10-18)
 * added export/import to config tables
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 MIT License
 
