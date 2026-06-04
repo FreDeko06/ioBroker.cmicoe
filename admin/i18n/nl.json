@@ -1,0 +1,21 @@
+{
+    "bindOption": "IP om te luisteren van",
+    "cmiIP": "IP -adres van de C.M.I.",
+    "cmiPort": "COE -haven van de C.M.I.",
+    "cmicoe adapter settings": "Adapterinstellingen voor cmicoe",
+    "deg": "° C",
+    "description": "Beschrijving",
+    "factor": "Factor",
+    "inputs": "Invoer",
+    "node": "Knooppunt",
+    "nodeId": "Knooppunt -ID",
+    "outId": "Uitvoer -ID",
+    "outType": "Uitgangstype",
+    "output": "Ausgang",
+    "outputs": "Uitgangen",
+    "portOption": "poort om te luisteren van",
+    "sendInterval": "Stuur interval",
+    "sendOnChange": "Stuur op verandering",
+    "unit": "Eenheid",
+    "wm": "W/m²"
+}

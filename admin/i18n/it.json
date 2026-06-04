@@ -1,0 +1,21 @@
+{
+    "bindOption": "IP da ascoltare da",
+    "cmiIP": "Indirizzo IP del C.M.I.",
+    "cmiPort": "COE Port of the C.M.I.",
+    "cmicoe adapter settings": "Impostazioni dell'adattatore per cmicoe",
+    "deg": "° C.",
+    "description": "Descrizione",
+    "factor": "Fattore",
+    "inputs": "Input",
+    "node": "Nodo",
+    "nodeId": "ID nodo",
+    "outId": "ID output",
+    "outType": "Tipo di output",
+    "output": "Ausgang",
+    "outputs": "Output",
+    "portOption": "porto da ascoltare da",
+    "sendInterval": "Invia intervallo",
+    "sendOnChange": "Invia il cambiamento",
+    "unit": "Unità",
+    "wm": "W/m²"
+}

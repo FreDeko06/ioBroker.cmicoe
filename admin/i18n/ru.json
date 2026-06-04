@@ -1,0 +1,21 @@
+{
+    "bindOption": "IP для прослушивания",
+    "cmiIP": "IP -адрес C.M.I.",
+    "cmiPort": "Порт Коу С.М.И.",
+    "cmicoe adapter settings": "Настройки адаптера для cmicoe",
+    "deg": "° C.",
+    "description": "Описание",
+    "factor": "Фактор",
+    "inputs": "Входные данные",
+    "node": "Узел",
+    "nodeId": "Идентификатор узла",
+    "outId": "Выходной идентификатор",
+    "outType": "Вывод типа",
+    "output": "Аусганг",
+    "outputs": "Выходы",
+    "portOption": "порт, чтобы слушать",
+    "sendInterval": "Отправить интервал",
+    "sendOnChange": "отправить на перемены",
+    "unit": "Единица",
+    "wm": "W/м²"
+}

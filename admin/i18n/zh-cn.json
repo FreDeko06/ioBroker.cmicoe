@@ -1,0 +1,21 @@
+{
+    "bindOption": "IP从",
+    "cmiIP": "C.M.I.的IP地址",
+    "cmiPort": "C.M.I.的COE港口",
+    "cmicoe adapter settings": "cmicoe的适配器设置",
+    "deg": "°C",
+    "description": "描述",
+    "factor": "因素",
+    "inputs": "输入",
+    "node": "节点",
+    "nodeId": "节点ID",
+    "outId": "输出ID",
+    "outType": "输出类型",
+    "output": "奥斯冈",
+    "outputs": "输出",
+    "portOption": "从",
+    "sendInterval": "发送间隔",
+    "sendOnChange": "发送更改",
+    "unit": "单元",
+    "wm": "W/m²"
+}

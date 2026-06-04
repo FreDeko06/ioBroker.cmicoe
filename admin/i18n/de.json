@@ -1,0 +1,21 @@
+{
+    "bindOption": "Lokale IP",
+    "cmiIP": "IP-Adresse des C.M.I.",
+    "cmiPort": "CoE-Port des C.M.I.",
+    "cmicoe adapter settings": "Adaptereinstellungen für cmicoe",
+    "deg": "°C",
+    "description": "Beschreibung",
+    "factor": "Faktor",
+    "inputs": "Eingänge",
+    "node": "Knoten",
+    "nodeId": "Knoten-ID",
+    "outId": "Ausgabe-ID",
+    "outType": "Ausgangstyp",
+    "output": "Ausgang",
+    "outputs": "Ausgänge",
+    "portOption": "Lokaler Port",
+    "sendInterval": "Sende-Intervall",
+    "sendOnChange": "Bei Änderung senden",
+    "unit": "Einheit",
+    "wm": "W/m²"
+}
