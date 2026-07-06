@@ -1,4 +1,7 @@
 # Older changes
+## 1.2.2 (2025-10-18)
+* added export/import to config tables
+
 ## 1.2.1 (2025-10-12)
 * Bump @types/node to 24.7.2
 * Bump @alcalzone/release-script-plugin-license to 4.0.0
