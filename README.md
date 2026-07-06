@@ -57,6 +57,9 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
+### **WORK IN PROGRESS**
+* update dependencies
+
 ### 1.3.0 (2026-05-14)
 * update dependencies
 * (copilot) Adapter requires node.js >= 22 now

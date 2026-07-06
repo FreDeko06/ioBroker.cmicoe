@@ -9,7 +9,6 @@
     "inputs": "Entradas",
     "node": "Nó",
     "nodeId": "ID do nó",
-    "nodesOption": "nós de saída ([nó]/[d | a] [saída], ..) por exemplo: 25/d1,29/a3",
     "outId": "ID de saída",
     "outType": "Tipo de saída",
     "output": "Ausgang",

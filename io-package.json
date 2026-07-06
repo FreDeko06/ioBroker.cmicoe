@@ -43,7 +43,7 @@
         "zh-cn": "@ types/ node 到 25. 0.1\n凸起@tsconfig/node20 到 20.0.8\n凸起的阴影\n组合动作/检查到 6\n更多依赖性更新"
       },
       "1.2.3": {
-        "en": "migrate to npm trusted publishing",
+        "en": "migriere zu npm trusted publishing",
         "de": "migrate to npm trusted publishing",
         "ru": "перейти в npm trusted publishing",
         "pt": "migrar para a publicação confiável do npm",
