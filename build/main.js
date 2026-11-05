@@ -219,7 +219,7 @@ class Cmicoe extends utils.Adapter {
     if (this.cmiIP == "") {
       return;
     }
-    if (this.lastSent > Date.now() + 18e5) {
+    if (Date.now() - this.lastSent > 18e5) {
       if (!this.timeout) {
         this.setStateChanged("timeout", true, true);
         this.setStateChanged("info.connection", false, true);

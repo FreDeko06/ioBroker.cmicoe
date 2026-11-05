@@ -24,6 +24,7 @@
     "node": ">= 22"
   },
   "dependencies": {
+    "@alcalzone/pak": "^0.12.0",
     "@iobroker/adapter-core": "^3.4.3"
   },
   "devDependencies": {
