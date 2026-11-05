@@ -57,6 +57,10 @@ If checked, the adapter also sends an output once it changes.
 
 
 ## Changelog
+### **WORK IN PROGRESS**
+* fix timeout detector
+* update dependencies
+
 ### 1.3.1 (2026-07-06)
 * update dependencies
 
