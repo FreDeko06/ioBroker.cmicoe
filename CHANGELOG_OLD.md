@@ -1,4 +1,7 @@
 # Older changes
+## 1.2.3 (2025-10-25)
+* migrate to npm trusted publishing
+
 ## 1.2.2 (2025-10-18)
 * added export/import to config tables
 
